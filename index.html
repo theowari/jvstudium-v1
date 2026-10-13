@@ -1,0 +1,2934 @@
+<!doctype html>
+<!--
+  ==========================================================================
+  JV STUDIUM · PROTÓTIPO DA HOMEPAGE
+  ==========================================================================
+  Protótipo de apresentação: somente front-end, sem backend.
+  Estrutura e requisitos: docs/guia-de-estrutura.md
+  Identidade visual:      docs/DESIGN.md
+
+  PLACEHOLDERS (confirmar com o JV Studium antes de publicar). Os mesmos
+  dados estão no objeto STUDIO, no início do <script> no fim do <body>.
+  Faça "localizar e substituir" neste arquivo:
+
+    Rua Exemplo, 000, Centro        -> endereço completo
+    5519900000000                   -> WhatsApp (DDI + DDD + número, só dígitos)
+    (19) 90000-0000                 -> telefone/WhatsApp formatado para exibição
+    @jvstudium / jvstudium          -> perfil oficial do Instagram (confirmar)
+    Terça a sexta, 9h às 19h        -> horários de atendimento
+    Sábado, 8h às 16h
+
+  Conteúdo ilustrativo (substituir antes de publicar):
+    - Logo: monograma tipográfico provisório (.brand). Trocar pelo SVG oficial.
+    - Fotos: Unsplash (licença gratuita), escolhidas pela paleta da marca.
+    - Textos institucionais, etapas do Dia da Noiva e descrições de serviços.
+    - Depoimentos: textos de exemplo, identificados como ilustrativos.
+    - Agendamento: profissionais e horários simulados no navegador.
+
+  Identidade visual:
+    - Cores, fontes, raios e curvas de animação: tokens em :root (<style>)
+    - Ornamento: <symbol id="ramo"> (ramo de oliveira), logo após o <body>
+
+  Arquivo único: CSS e JavaScript embutidos. Dependências externas:
+  Google Fonts, Phosphor Icons (unpkg), fotos do Unsplash e mapa do Google.
+  ==========================================================================
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>JV Studium | Beleza, estética e bem-estar em São João da Boa Vista</title>
+  <meta name="description" content="Salão de alto padrão em São João da Boa Vista - SP: cabelo, maquiagem, estética, bem-estar e Dia da Noiva em um espaço botânico. Agende seu horário.">
+  <!-- PROTÓTIPO: remover o noindex na publicação definitiva -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#F4EFE6">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="JV Studium | Beleza, estética e bem-estar">
+  <meta property="og:description" content="Cabelo, maquiagem, estética, bem-estar e Dia da Noiva em São João da Boa Vista - SP.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1624819318229-f006595a4993?auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=80">
+  <!-- PLACEHOLDER: favicon provisório (monograma) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230F4A2F'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='Georgia,serif' font-size='26' letter-spacing='1' fill='%23D4B87A'%3EJV%3C/text%3E%3C/svg%3E">
+
+  <script>
+    // Marca que o JavaScript está ativo antes do CSS: as animações de entrada
+    // só escondem conteúdo quando há JS para revelá-lo.
+    document.documentElement.classList.add('js');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Great+Vibes&amp;family=Jost:wght@300;400;500&amp;display=swap">
+
+  <!-- Phosphor Icons: peso light (linha fina, padrão da marca) + regular para setas de botão -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+
+  <!-- Imagem principal do hero (LCP) -->
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1624819318229-f006595a4993?auto=format&amp;fit=crop&amp;w=640&amp;h=800&amp;q=75"
+        imagesrcset="https://images.unsplash.com/photo-1624819318229-f006595a4993?auto=format&amp;fit=crop&amp;w=640&amp;h=800&amp;q=75 640w, https://images.unsplash.com/photo-1624819318229-f006595a4993?auto=format&amp;fit=crop&amp;w=960&amp;h=1200&amp;q=75 960w"
+        imagesizes="(max-width: 640px) 64vw, 460px">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BeautySalon",
+    "name": "JV Studium",
+    "description": "Beleza, estética, saúde e bem-estar. Dia da Noiva.",
+    "url": "https://jvstudium.com.br/",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "São João da Boa Vista",
+      "addressRegion": "SP",
+      "addressCountry": "BR"
+    }
+  }
+  </script>
+
+  <style>
+    /* ==========================================================================
+       JV Studium · homepage institucional (protótipo)
+       Direção: luxo botânico editorial. Verde profundo + dourado fosco sobre
+       creme, serifada elegante nos títulos, script só como acento, muito respiro.
+       Proporção da marca: ~60% creme e branco, ~30% verde, ~10% dourado.
+
+       Sistema de forma (regra única, aplicada em toda a página):
+       - Botões, filtros e horários: pílula (999px)
+       - Superfícies, cards e imagens: 20px
+       - Campos e opções de formulário: 12px (caixa de seleção: 6px)
+       - Imagens de destaque (hero, Dia da Noiva): arco (topo semicircular)
+
+       Contraste: dourado só aparece como texto pequeno nos tons legíveis
+       (--ouro-texto sobre claro, --dourado-claro sobre verde). O dourado puro
+       fica para linhas, ícones, números grandes e ornamentos.
+       ========================================================================== */
+
+    :root {
+      /* Marca (docs/DESIGN.md) */
+      --verde-profundo: #0F4A2F;
+      --verde-folha: #1D4A35;
+      --salvia: #B5CBB8;
+      --dourado: #B8965A;
+      --dourado-claro: #D4B87A;
+      --dourado-escuro: #9A7B3F;
+      --gradiente-ouro: linear-gradient(135deg, #D4B87A, #9A7B3F);
+      --creme: #F4EFE6;
+      --areia: #E8DCC8;
+      --nude: #D9A9A0;
+
+      /* Derivados */
+      --branco: #FBF8F2;          /* "branco" quente da proporção creme e branco */
+      --campo: #FFFDF9;           /* fundo dos campos de formulário */
+      --tinta: #14291E;           /* texto principal sobre claro */
+      --tinta-suave: #4B5D52;     /* texto secundário sobre claro (6,1:1 no creme) */
+      --ouro-texto: #6E5626;      /* dourado legível em texto pequeno sobre claro */
+      --verde-noite: #0B3A24;     /* footer */
+      --erro: #A33A2B;
+
+      /* Tipografia */
+      --fonte-titulo: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+      --fonte-marca: 'Cinzel', 'Cormorant Garamond', serif;
+      --fonte-script: 'Great Vibes', 'Allura', cursive;
+      --fonte-texto: 'Jost', 'Montserrat', system-ui, sans-serif;
+
+      /* Forma */
+      --raio-botao: 999px;
+      --raio: 20px;
+      --raio-campo: 12px;
+      --arco: 999px 999px 0 0;
+
+      /* Espaço */
+      --gutter: clamp(20px, 5vw, 56px);
+      --largura: 1320px;
+      --secao: clamp(96px, 11vw, 168px);
+
+      /* Movimento */
+      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+      --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+      --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+      /* Camadas */
+      --z-grao: 80;
+      --z-menu: 90;
+      --z-header: 100;
+
+      color-scheme: light;
+    }
+
+    /* Tema de superfície: claro por padrão; .on-dark é usado nos blocos verdes */
+    :root, .on-light {
+      --fg: var(--tinta);
+      --fg-suave: var(--tinta-suave);
+      --linha: color-mix(in oklab, var(--verde-profundo) 15%, transparent);
+      --foco: var(--dourado-escuro);
+      --destaque: var(--ouro-texto);
+    }
+    .on-dark {
+      --fg: var(--creme);
+      --fg-suave: color-mix(in oklab, var(--creme) 76%, var(--verde-profundo));
+      --linha: color-mix(in oklab, var(--dourado) 30%, transparent);
+      --foco: var(--dourado-claro);
+      --destaque: var(--dourado-claro);
+      background-color: var(--verde-profundo);
+      color: var(--fg);
+    }
+    .on-light { color: var(--fg); }
+
+    /* ---------- Base ---------- */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-padding-top: 96px; }
+    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+    html.menu-open, html:has(dialog[open]) { overflow: hidden; }
+    body {
+      margin: 0;
+      background: var(--creme);
+      color: var(--fg);
+      font: 400 1rem/1.7 var(--fonte-texto);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      overflow-x: clip;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    input, textarea { font: inherit; color: inherit; }
+    h1, h2, h3, p, figure, blockquote, dl, dd, ol, ul { margin: 0; }
+    ol[role="list"], ul[role="list"] { list-style: none; padding: 0; }
+    fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
+    /* O atributo hidden sempre vence o display dos componentes (menu, etapas, resultado) */
+    [hidden] { display: none !important; }
+    :focus-visible { outline: 2px solid var(--foco); outline-offset: 3px; }
+    ::selection { background: color-mix(in oklab, var(--dourado) 35%, transparent); }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+    }
+    .skip-link {
+      position: fixed; z-index: 200; top: 12px; left: 12px;
+      padding: 12px 20px; border-radius: var(--raio-botao);
+      background: var(--verde-profundo); color: var(--creme);
+      font-weight: 500; transform: translateY(-160%);
+      transition: transform 200ms var(--ease-out);
+    }
+    .skip-link:focus { transform: none; }
+
+    .container { width: min(100% - 2 * var(--gutter), var(--largura)); margin-inline: auto; }
+    .section { position: relative; padding-block: var(--secao); }
+
+    /* Grão de papel: textura quase imperceptível sobre o creme (fixa, sem custo de rolagem) */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: var(--z-grao);
+      pointer-events: none;
+      opacity: .05;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .15 0 0 0 0 .1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    @media (pointer: coarse) { body::after { display: none; } }
+
+    /* ---------- Tipografia ---------- */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      font: 500 .75rem/1 var(--fonte-texto);
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--fg-suave);
+    }
+    .eyebrow::before, .eyebrow::after { content: ''; flex: none; width: 36px; height: 1px; background: var(--dourado); }
+    @media (max-width: 599.98px) {
+      .eyebrow { gap: 10px; font-size: .68rem; letter-spacing: .2em; white-space: nowrap; }
+      .eyebrow::before, .eyebrow::after { width: 18px; }
+    }
+    @media (max-width: 359.98px) { .eyebrow::before, .eyebrow::after { display: none; } }
+
+    .h2 {
+      font: 400 clamp(2.6rem, 1.7rem + 3.4vw, 4.6rem)/1.02 var(--fonte-titulo);
+      letter-spacing: -.015em;
+      color: var(--fg);
+      text-wrap: balance;
+    }
+    .h2 em { font-style: italic; }
+    .lead {
+      max-width: 52ch;
+      font-size: clamp(1.05rem, 1rem + .25vw, 1.2rem);
+      line-height: 1.7;
+      color: var(--fg-suave);
+      text-wrap: pretty;
+    }
+    .text { max-width: 58ch; color: var(--fg-suave); text-wrap: pretty; }
+    .text p + p { margin-top: 1em; }
+    .script { font-family: var(--fonte-script); font-weight: 400; color: var(--dourado-claro); }
+
+    .section-head { display: grid; gap: 22px; margin-bottom: clamp(48px, 6vw, 80px); }
+    .section-head--center { justify-items: center; text-align: center; }
+    .section-head--center .lead { margin-inline: auto; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 15px;
+      border-radius: var(--raio-botao);
+      border: 1px solid color-mix(in oklab, var(--dourado) 55%, transparent);
+      font: 500 .7rem/1 var(--fonte-texto);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--destaque);
+    }
+    .badge i { font-size: 1rem; }
+
+    /* ---------- Botões e links ---------- */
+    .btn {
+      --btn-bg: var(--verde-profundo);
+      --btn-fg: var(--creme);
+      --btn-icon-bg: var(--gradiente-ouro);
+      --btn-icon-fg: var(--verde-profundo);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      min-height: 56px;
+      padding: 7px 7px 7px 28px;
+      border-radius: var(--raio-botao);
+      background: var(--btn-bg);
+      color: var(--btn-fg);
+      font: 500 .76rem/1 var(--fonte-texto);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: transform 160ms var(--ease-out), background-color 300ms ease, box-shadow 400ms var(--ease-out);
+    }
+    .btn:active { transform: scale(.97); }
+    .btn__icon {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--btn-icon-bg);
+      color: var(--btn-icon-fg);
+      font-size: 1.05rem;
+      transition: transform 400ms var(--ease-out);
+    }
+    .btn--plain { padding-inline: 32px; }
+    .btn--sm { min-height: 48px; gap: 12px; padding: 5px 5px 5px 22px; font-size: .7rem; }
+    .btn--sm .btn__icon { width: 38px; height: 38px; font-size: .95rem; }
+    .btn--light {
+      --btn-bg: var(--creme);
+      --btn-fg: var(--verde-profundo);
+      --btn-icon-bg: var(--verde-profundo);
+      --btn-icon-fg: var(--dourado-claro);
+    }
+    .btn[disabled] { cursor: progress; opacity: .85; }
+    @media (hover: hover) and (pointer: fine) {
+      .btn:hover {
+        --btn-bg: color-mix(in oklab, var(--verde-profundo) 86%, var(--creme));
+        box-shadow: 0 16px 34px -18px color-mix(in oklab, var(--verde-profundo) 70%, transparent);
+      }
+      .btn--light:hover { --btn-bg: var(--branco); box-shadow: 0 16px 34px -18px rgba(0, 0, 0, .5); }
+      .btn:hover .btn__icon { transform: translateX(3px); }
+    }
+
+    .link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding-block: 10px;
+      font: 500 .76rem/1 var(--fonte-texto);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--fg);
+    }
+    .link::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 3px;
+      height: 1px;
+      background: var(--dourado);
+      transform-origin: left;
+      transition: transform 500ms var(--ease-out);
+    }
+    .link i { font-size: 1rem; transition: transform 400ms var(--ease-out); }
+    @media (hover: hover) and (pointer: fine) {
+      .link:hover::after { transform: scaleX(.4); }
+      .link:hover i { transform: translateX(3px); }
+    }
+
+    .btn-text {
+      padding: 14px 4px;
+      font: 500 .74rem/1 var(--fonte-texto);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--fg-suave);
+      transition: color 200ms ease;
+    }
+    @media (hover: hover) and (pointer: fine) { .btn-text:hover { color: var(--fg); } }
+    .inline-link {
+      color: var(--destaque);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      font: inherit;
+    }
+
+    .icon-btn {
+      display: grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid var(--linha);
+      color: var(--fg);
+      font-size: 1.25rem;
+      transition: border-color 300ms ease, background-color 300ms ease, transform 160ms var(--ease-out);
+    }
+    .icon-btn:active { transform: scale(.94); }
+    .icon-btn:disabled { opacity: .35; cursor: not-allowed; }
+    .icon-btn--sm { width: 40px; height: 40px; font-size: 1rem; }
+    @media (hover: hover) and (pointer: fine) {
+      .icon-btn:not(:disabled):hover { border-color: var(--dourado); background: color-mix(in oklab, var(--dourado) 10%, transparent); }
+    }
+
+    /* ---------- Marca (logo provisório) ---------- */
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--fonte-marca);
+      color: var(--verde-profundo);
+      line-height: 1;
+    }
+    .brand__mono {
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      background: var(--gradiente-ouro);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .brand__rule { width: 1px; height: 24px; background: var(--dourado); opacity: .7; }
+    .brand__name { font-size: .95rem; font-weight: 500; letter-spacing: .32em; margin-right: -.32em; text-transform: uppercase; }
+
+    /* ---------- Ornamento: ramo de oliveira ---------- */
+    .ramo { display: block; width: 168px; height: auto; color: var(--salvia); overflow: visible; }
+    .ramo--espelho { transform: scaleX(-1); }
+
+    /* ---------- Header ---------- */
+    .header {
+      position: fixed;
+      z-index: var(--z-header);
+      top: 10px;
+      left: 50%;
+      translate: -50% 0;
+      width: min(100% - 20px, var(--largura) + 48px);
+      height: 60px;
+      padding-inline: 6px;
+      border-radius: var(--raio-botao);
+      border: 1px solid transparent;
+      transition: background-color 400ms ease, border-color 400ms ease, box-shadow 400ms ease;
+    }
+    .header.is-scrolled {
+      background: color-mix(in oklab, var(--creme) 82%, transparent);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
+      backdrop-filter: blur(16px) saturate(140%);
+      border-color: color-mix(in oklab, var(--verde-profundo) 10%, transparent);
+      box-shadow: 0 12px 40px -20px color-mix(in oklab, var(--verde-profundo) 40%, transparent);
+    }
+    @media (prefers-reduced-transparency: reduce) {
+      .header.is-scrolled { background: var(--creme); -webkit-backdrop-filter: none; backdrop-filter: none; }
+    }
+    .header__inner {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      height: 100%;
+    }
+    .header__start { justify-self: start; display: flex; align-items: center; }
+    .header__end { justify-self: end; display: flex; align-items: center; gap: 28px; }
+    .header .brand { justify-self: center; }
+
+    .nav-list { display: none; }
+    .nav-link {
+      position: relative;
+      display: inline-block;
+      padding: 12px 0;
+      font: 500 .7rem/1 var(--fonte-texto);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--fg);
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 5px;
+      height: 1px;
+      background: var(--dourado);
+      transform: scaleX(0);
+      transition: transform 500ms var(--ease-out);
+    }
+    .nav-link[aria-current="true"]::after { transform: scaleX(1); }
+    @media (hover: hover) and (pointer: fine) { .nav-link:hover::after { transform: scaleX(1); } }
+
+    .menu-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      height: 46px;
+      padding: 0 14px;
+      border-radius: var(--raio-botao);
+      font: 500 .7rem/1 var(--fonte-texto);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .menu-toggle__bars { position: relative; width: 22px; height: 12px; }
+    .menu-toggle__bars span {
+      position: absolute;
+      left: 0; right: 0;
+      height: 1.5px;
+      border-radius: 2px;
+      background: currentColor;
+      transition: transform 450ms var(--ease-out);
+    }
+    .menu-toggle__bars span:first-child { top: 0; }
+    .menu-toggle__bars span:last-child { bottom: 0; }
+    .menu-toggle[aria-expanded="true"] .menu-toggle__bars span:first-child { transform: translateY(5.25px) rotate(45deg); }
+    .menu-toggle[aria-expanded="true"] .menu-toggle__bars span:last-child { transform: translateY(-5.25px) rotate(-45deg); }
+
+    .header__cta .label-short { display: none; }
+    @media (max-width: 1099.98px) {
+      .header__cta { padding-left: 18px; }
+      .header__cta .label-long { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+      .header__cta .label-short { display: inline; }
+    }
+    /* Celular: logo e botão compactos para caberem lado a lado com o menu */
+    @media (max-width: 599.98px) {
+      .menu-toggle__label { display: none; }
+      .header .brand { gap: 10px; }
+      .header .brand__mono { font-size: 1.3rem; }
+      .header .brand__rule { height: 18px; }
+      .header .brand__name { font-size: .74rem; letter-spacing: .26em; margin-right: -.26em; }
+      .header__cta { min-height: 44px; padding: 0 18px; }
+      .header__cta .btn__icon { display: none; }
+    }
+    @media (min-width: 1100px) {
+      .header { top: 14px; height: 68px; padding-inline: 10px; }
+      .menu-toggle { display: none; }
+      .nav-list { display: flex; align-items: center; gap: clamp(22px, 2.4vw, 38px); padding-inline: 18px; }
+      .header__end .nav-list { padding-inline: 0; }
+    }
+
+    /* ---------- Menu móvel ---------- */
+    .menu {
+      position: fixed;
+      inset: 0;
+      z-index: var(--z-menu);
+      display: grid;
+      place-items: center;
+      padding: 96px var(--gutter) 40px;
+      overflow-y: auto;
+      background: color-mix(in oklab, var(--creme) 97%, transparent);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      opacity: 0;
+      transition: opacity 400ms var(--ease-out);
+    }
+    .menu.is-open { opacity: 1; }
+    .menu__inner { display: grid; justify-items: center; gap: 36px; text-align: center; }
+    .menu__list { display: grid; gap: 2px; }
+    .menu__list li {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 500ms var(--ease-out), transform 700ms var(--ease-out);
+      transition-delay: calc(var(--i, 0) * 45ms + 60ms);
+    }
+    .menu.is-open .menu__list li { opacity: 1; transform: none; }
+    .menu__list a {
+      display: inline-block;
+      padding: 6px 12px;
+      font: 400 clamp(2.1rem, 1.5rem + 3vw, 2.9rem)/1.15 var(--fonte-titulo);
+      color: var(--fg);
+    }
+    .menu__foot {
+      display: grid;
+      justify-items: center;
+      gap: 26px;
+      opacity: 0;
+      transition: opacity 500ms var(--ease-out) 320ms;
+    }
+    .menu.is-open .menu__foot { opacity: 1; }
+    .menu__social { display: flex; gap: 12px; }
+    .menu .ramo { width: 132px; color: var(--salvia); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      padding-top: clamp(116px, 15vh, 168px);
+      padding-bottom: clamp(24px, 9vw, 128px);
+      overflow: clip;
+      text-align: center;
+    }
+    .hero__text { width: min(100% - 2 * var(--gutter), 1000px); margin-inline: auto; display: grid; justify-items: center; }
+    .hero__title {
+      margin-top: 26px;
+      font: 400 clamp(3.5rem, 1.6rem + 7vw, 7.5rem)/.95 var(--fonte-titulo);
+      letter-spacing: -.025em;
+      color: var(--verde-profundo);
+      text-wrap: balance;
+    }
+    .hero__title em { font-style: italic; }
+    .hero__lead { margin-top: 28px; max-width: 36ch; }
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 14px 32px;
+      margin-top: 40px;
+    }
+    .hero__gallery {
+      display: grid;
+      grid-template-columns: 40vw 64vw 40vw;
+      justify-content: center;
+      align-items: start;
+      gap: 12px;
+      margin-top: 56px;
+    }
+    .hero__img { overflow: hidden; border-radius: var(--arco); background: var(--areia); }
+    .hero__img img { width: 100%; height: 100%; object-fit: cover; }
+    .hero__img--main { aspect-ratio: 4 / 5; }
+    .hero__img--side { aspect-ratio: 3 / 4; margin-top: 22%; }
+    @media (min-width: 640px) {
+      .hero__gallery {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.36fr) minmax(0, 1fr);
+        gap: clamp(16px, 2.6vw, 40px);
+        width: min(100% - 2 * var(--gutter), 1180px);
+        margin: clamp(64px, 7vw, 104px) auto 0;
+      }
+    }
+
+    /* ---------- O Studium ---------- */
+    .universo__grid { display: grid; gap: 56px; }
+    .universo__intro { display: grid; gap: 28px; }
+    .universo__media { position: relative; padding-bottom: 16%; }
+    .universo__main {
+      width: 80%;
+      margin-left: auto;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      border-radius: var(--raio);
+      background: var(--areia);
+    }
+    .universo__frame {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 44%;
+      border-radius: var(--raio);
+      box-shadow: 0 0 0 10px var(--creme);
+    }
+    .universo__detail { aspect-ratio: 3 / 4; overflow: hidden; border-radius: var(--raio); background: var(--areia); }
+    .universo__main img, .universo__detail img { width: 100%; height: 100%; object-fit: cover; }
+    .universo__ramo { position: absolute; top: -34px; left: 6%; width: clamp(140px, 15vw, 200px); transform: rotate(-12deg); }
+
+    .pillars { display: grid; margin-top: 8px; }
+    .pillars li {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 18px;
+      padding: 24px 0;
+    }
+    .pillars li + li { border-top: 1px solid var(--linha); }
+    .pillars i { font-size: 1.8rem; color: var(--dourado-escuro); line-height: 1; margin-top: 2px; }
+    .pillars h3 { font: 500 1.5rem/1.2 var(--fonte-titulo); color: var(--fg); }
+    .pillars p { margin-top: 4px; color: var(--fg-suave); }
+    .universo__details .link { margin-top: 20px; }
+
+    @media (min-width: 1024px) {
+      .universo__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; row-gap: 0; }
+      .universo__intro { grid-column: 1 / span 5; grid-row: 1; align-self: end; }
+      .universo__details { grid-column: 1 / span 5; grid-row: 2; margin-top: 40px; }
+      .universo__media { grid-column: 7 / span 6; grid-row: 1 / span 2; align-self: center; }
+    }
+
+    /* ---------- Dia da Noiva ---------- */
+    .noiva {
+      overflow: clip;
+      background:
+        radial-gradient(900px 640px at 92% -6%, rgba(212, 184, 122, .11), transparent 70%),
+        radial-gradient(700px 520px at -10% 108%, rgba(181, 203, 184, .08), transparent 70%),
+        var(--verde-profundo);
+    }
+    .noiva__grid { display: grid; gap: 64px; }
+    .noiva__sticky { position: relative; }
+    .noiva__main {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      border-radius: var(--arco);
+      background: var(--verde-folha);
+    }
+    .noiva__main img { width: 100%; height: 100%; object-fit: cover; }
+    .noiva__main::after {
+      content: '';
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(212, 184, 122, .65);
+      border-radius: var(--arco);
+      pointer-events: none;
+    }
+    .noiva__detail {
+      position: absolute;
+      right: -4%;
+      bottom: 7%;
+      width: 34%;
+      aspect-ratio: 1;
+      overflow: hidden;
+      border-radius: 50%;
+      box-shadow: 0 0 0 8px var(--verde-profundo), 0 0 0 9px rgba(212, 184, 122, .6);
+    }
+    .noiva__detail img { width: 100%; height: 100%; object-fit: cover; }
+
+    .noiva__ramo { width: 132px; color: var(--dourado); margin-bottom: 10px; }
+    .noiva__title {
+      position: relative;
+      padding-top: .5em;
+      font: 400 clamp(3.4rem, 1.9rem + 5vw, 6.4rem)/.95 var(--fonte-titulo);
+      letter-spacing: -.02em;
+      color: var(--creme);
+    }
+    .noiva__script {
+      position: absolute;
+      top: -.02em;
+      left: .08em;
+      font-size: .58em;
+      line-height: 1;
+      transform: rotate(-7deg);
+      letter-spacing: 0;
+    }
+    .noiva .lead { margin-top: 30px; }
+
+    .moments { margin-top: 48px; }
+    .moments li {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 18px;
+      padding: 26px 0;
+      border-top: 1px solid var(--linha);
+    }
+    .moments li:last-child { border-bottom: 1px solid var(--linha); }
+    .moments__num { font: italic 400 2rem/1 var(--fonte-titulo); color: var(--dourado-claro); }
+    .moments h3 { font: 500 1.6rem/1.15 var(--fonte-titulo); color: var(--creme); }
+    .moments p { margin-top: 6px; color: var(--fg-suave); }
+
+    .noiva__note { margin-top: 28px; font-size: .92rem; color: var(--fg-suave); max-width: 52ch; }
+    .noiva__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; margin-top: 36px; }
+
+    @media (min-width: 1024px) {
+      .noiva__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 1fr) minmax(0, 6fr); gap: 0; }
+      .noiva__media { grid-column: 1; }
+      .noiva__sticky { position: sticky; top: 120px; }
+      .noiva__content { grid-column: 3; padding-block: 24px; }
+    }
+    @media (max-width: 1023.98px) {
+      .noiva__media { width: min(100%, 520px); margin-inline: auto; }
+      .noiva__detail { right: 3%; }
+    }
+    @media (max-width: 599.98px) {
+      .moments li { grid-template-columns: 44px 1fr; gap: 12px; }
+    }
+
+    /* ---------- Serviços ---------- */
+    .svc__tab {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 40px 1fr auto;
+      align-items: center;
+      gap: 16px;
+      padding: 22px 0;
+      text-align: left;
+      color: var(--fg-suave);
+      transition: color 300ms ease;
+    }
+    .svc__icon { font-size: 1.6rem; color: var(--dourado-escuro); }
+    .svc__name { font: 400 clamp(1.9rem, 1.4rem + 1.4vw, 2.6rem)/1.1 var(--fonte-titulo); }
+    .svc__arrow, .svc__caret { font-size: 1.1rem; color: var(--dourado-escuro); transition: transform 400ms var(--ease-out), opacity 300ms ease; }
+    .svc__item.is-active .svc__tab { color: var(--fg); }
+    .svc__head { position: relative; }
+    .svc__media { aspect-ratio: 4 / 3; overflow: hidden; border-radius: var(--raio); background: var(--areia); }
+    .svc__media img { width: 100%; height: 100%; object-fit: cover; }
+    .svc__body { display: grid; gap: 24px; justify-items: start; padding-top: 24px; }
+    .svc__body p { max-width: 46ch; color: var(--fg-suave); }
+
+    /* Desktop: lista à esquerda, painel do item ativo à direita */
+    @media (min-width: 1024px) {
+      .svc {
+        display: grid;
+        grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+        grid-template-rows: repeat(4, auto) 1fr;
+        column-gap: clamp(48px, 6vw, 96px);
+        align-items: start;
+      }
+      .svc__item { display: contents; }
+      .svc__head { grid-column: 1; border-bottom: 1px solid var(--linha); }
+      .svc__head::after {
+        content: '';
+        position: absolute;
+        left: 0; right: 0; bottom: -1px;
+        height: 1px;
+        background: var(--dourado);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 700ms var(--ease-out);
+      }
+      .svc__item.is-active .svc__head::after { transform: scaleX(1); }
+      .svc__caret { display: none; }
+      .svc__arrow { opacity: 0; transform: translateX(-10px); }
+      .svc__item.is-active .svc__arrow { opacity: 1; transform: none; }
+      .svc__panel {
+        grid-column: 2;
+        grid-row: 1 / -1;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 450ms var(--ease-out), visibility 0s linear 450ms;
+      }
+      .svc__item.is-active .svc__panel { opacity: 1; visibility: visible; transition: opacity 450ms var(--ease-out), visibility 0s; }
+      .svc__panel img { transform: scale(1.05); filter: blur(6px); transition: transform 1000ms var(--ease-out), filter 500ms var(--ease-out); }
+      .svc__item.is-active .svc__panel img { transform: none; filter: none; }
+      .svc__body { grid-template-columns: 1fr auto; align-items: center; padding-top: 28px; }
+      @media (hover: hover) and (pointer: fine) { .svc__tab:hover { color: var(--fg); } }
+    }
+
+    /* Mobile e tablet: acordeão (um item aberto por vez) */
+    @media (max-width: 1023.98px) {
+      .svc__item { border-top: 1px solid var(--linha); }
+      .svc__item:last-child { border-bottom: 1px solid var(--linha); }
+      .svc__arrow { display: none; }
+      .svc__item.is-active .svc__caret { transform: rotate(180deg); }
+      .svc__panel {
+        display: grid;
+        grid-template-rows: 0fr;
+        visibility: hidden;
+        transition: grid-template-rows 500ms var(--ease-out), visibility 0s linear 500ms;
+      }
+      .svc__item.is-active .svc__panel { grid-template-rows: 1fr; visibility: visible; transition: grid-template-rows 500ms var(--ease-out), visibility 0s; }
+      .svc__panel-inner { min-height: 0; overflow: hidden; }
+      .svc__panel-inner > :last-child { padding-bottom: 32px; }
+    }
+
+    /* ---------- Galeria ---------- */
+    .galeria { padding-top: 0; }
+    .galeria__note { display: block; margin-top: 6px; font-size: .85rem; color: var(--fg-suave); }
+    .filters { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .chip {
+      min-height: 44px;
+      padding: 0 20px;
+      border-radius: var(--raio-botao);
+      border: 1px solid var(--linha);
+      font: 500 .72rem/1 var(--fonte-texto);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--fg-suave);
+      transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease, transform 160ms var(--ease-out);
+    }
+    .chip:active { transform: scale(.96); }
+    .chip[aria-pressed="true"] { background: var(--verde-profundo); border-color: var(--verde-profundo); color: var(--creme); }
+    @media (hover: hover) and (pointer: fine) { .chip[aria-pressed="false"]:hover { border-color: var(--dourado); color: var(--fg); } }
+
+    .gallery { columns: 2; column-gap: 12px; margin-top: 44px; }
+    .gallery__item { break-inside: avoid; margin-bottom: 12px; }
+    .gallery__item[hidden] { display: none; }
+    .gallery__btn {
+      position: relative;
+      display: block;
+      width: 100%;
+      overflow: hidden;
+      border-radius: var(--raio);
+      background: var(--areia);
+    }
+    .gallery__btn img { width: 100%; height: auto; transition: transform 900ms var(--ease-out); }
+    .gallery__zoom {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: color-mix(in oklab, var(--creme) 90%, transparent);
+      color: var(--verde-profundo);
+      font-size: 1.2rem;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 300ms ease, transform 400ms var(--ease-out);
+    }
+    .gallery__btn:focus-visible .gallery__zoom { opacity: 1; transform: none; }
+    @media (hover: hover) and (pointer: fine) {
+      .gallery__btn:hover img { transform: scale(1.04); }
+      .gallery__btn:hover .gallery__zoom { opacity: 1; transform: none; }
+    }
+    @media (min-width: 1024px) {
+      .gallery { columns: 3; column-gap: 24px; }
+      .gallery__item { margin-bottom: 24px; }
+    }
+    /* Transição dos filtros (View Transitions): só os itens se movem */
+    ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+    ::view-transition-group(*) { animation-duration: 520ms; animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1); }
+
+    /* ---------- Lightbox ---------- */
+    dialog { padding: 0; border: 0; }
+    .lightbox {
+      width: 100vw;
+      height: 100dvh;
+      max-width: none;
+      max-height: none;
+      margin: 0;
+      background: transparent;
+      color: var(--creme);
+      overflow: hidden;
+    }
+    .lightbox[open] { display: grid; place-items: center; }
+    .lightbox::backdrop { background: rgba(6, 21, 13, .9); }
+    .lightbox__figure { display: grid; justify-items: center; gap: 16px; padding: 72px 16px 28px; touch-action: pan-y; }
+    .lightbox__figure img {
+      width: auto;
+      max-width: min(92vw, 1200px);
+      max-height: calc(100dvh - 170px);
+      border-radius: 12px;
+      transition: opacity 300ms ease;
+    }
+    .lightbox__figure img.is-loading { opacity: .3; }
+    .lightbox__figure figcaption { max-width: 60ch; font-size: .92rem; text-align: center; color: color-mix(in oklab, var(--creme) 80%, transparent); }
+    .lightbox .icon-btn { --linha: rgba(244, 239, 230, .28); color: var(--creme); background: rgba(244, 239, 230, .06); }
+    .lightbox__close { position: fixed; top: 16px; right: 16px; }
+    .lightbox__nav { position: fixed; top: 50%; translate: 0 -50%; }
+    .lightbox__nav--prev { left: 16px; }
+    .lightbox__nav--next { right: 16px; }
+    @media (max-width: 639.98px) {
+      .lightbox__nav { top: auto; bottom: 18px; translate: none; }
+      .lightbox__figure { padding-bottom: 96px; }
+      .lightbox__figure img { max-height: calc(100dvh - 230px); }
+    }
+
+    /* ---------- Diálogo (política de privacidade) ---------- */
+    .modal {
+      width: min(580px, 100% - 32px);
+      max-height: calc(100dvh - 48px);
+      border-radius: var(--raio);
+      background: var(--branco);
+      color: var(--fg);
+      box-shadow: 0 40px 100px -30px rgba(0, 0, 0, .5);
+    }
+    .modal::backdrop { background: rgba(6, 21, 13, .55); }
+    .modal__inner { padding: clamp(28px, 5vw, 44px); }
+    .modal__title { font: 400 2.3rem/1.1 var(--fonte-titulo); padding-right: 48px; }
+    .modal__body { margin-top: 18px; }
+    .modal__actions { margin-top: 28px; }
+    .modal__close { position: absolute; top: 16px; right: 16px; }
+
+    /* Entrada e saída dos diálogos (navegadores recentes; nos demais, instantâneo) */
+    .lightbox, .modal, .lightbox::backdrop, .modal::backdrop {
+      opacity: 0;
+      transition: opacity 260ms var(--ease-out), overlay 260ms allow-discrete, display 260ms allow-discrete;
+    }
+    .lightbox[open], .modal[open], .lightbox[open]::backdrop, .modal[open]::backdrop { opacity: 1; }
+    .modal { transform: scale(.96); transition: opacity 260ms var(--ease-out), transform 260ms var(--ease-out), overlay 260ms allow-discrete, display 260ms allow-discrete; }
+    .modal[open] { transform: none; }
+    .lightbox__figure { transform: scale(.97); transition: transform 320ms var(--ease-out); }
+    .lightbox[open] .lightbox__figure { transform: none; }
+    @starting-style {
+      .lightbox[open], .modal[open], .lightbox[open]::backdrop, .modal[open]::backdrop { opacity: 0; }
+      .modal[open] { transform: scale(.96); }
+      .lightbox[open] .lightbox__figure { transform: scale(.97); }
+    }
+
+    /* ---------- Depoimentos ---------- */
+    .depoimentos { background: var(--areia); text-align: center; }
+    .depoimentos__inner { display: grid; justify-items: center; }
+    .depoimentos .h2 { margin-top: 24px; }
+    .quotes { width: 100%; max-width: 900px; margin-top: 40px; }
+    .quotes__mark { display: flex; align-items: center; justify-content: center; gap: 18px; color: var(--dourado-escuro); }
+    .quotes__mark span { height: .42em; font: 400 7rem/.75 var(--fonte-titulo); }
+    .quotes__mark .ramo { width: 96px; color: var(--dourado); }
+    .quotes__track { display: grid; margin-top: 18px; touch-action: pan-y; }
+    .quote {
+      grid-area: 1 / 1;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      filter: blur(4px);
+      transition: opacity 600ms var(--ease-out), transform 700ms var(--ease-out), filter 600ms var(--ease-out), visibility 0s linear 600ms;
+    }
+    .quote.is-active {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      filter: none;
+      transition: opacity 600ms var(--ease-out), transform 700ms var(--ease-out), filter 600ms var(--ease-out), visibility 0s;
+    }
+    .quote blockquote p {
+      max-width: 30ch;
+      margin-inline: auto;
+      font: italic 400 clamp(1.7rem, 1.2rem + 1.6vw, 2.6rem)/1.3 var(--fonte-titulo);
+      color: var(--verde-profundo);
+      text-wrap: balance;
+    }
+    .quote figcaption {
+      margin-top: 28px;
+      font: 500 .74rem/1.4 var(--fonte-texto);
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--fg-suave);
+    }
+    .quotes__controls { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 44px; }
+    .quotes__dots { display: flex; gap: 2px; }
+    .quotes__dot { display: grid; place-items: center; width: 32px; height: 32px; }
+    .quotes__dot::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: var(--raio-botao);
+      background: color-mix(in oklab, var(--verde-profundo) 28%, transparent);
+      transition: width 400ms var(--ease-out), background-color 300ms ease;
+    }
+    .quotes__dot[aria-current="true"]::before { width: 24px; background: var(--dourado-escuro); }
+    .quotes__note { margin-top: 28px; font-size: .85rem; color: var(--fg-suave); }
+
+    /* ---------- Agendamento ---------- */
+    .agenda { overflow: clip; }
+    .agenda__grid { display: grid; gap: 48px; align-items: start; }
+    .agenda__intro { display: grid; gap: 26px; justify-items: start; }
+    .agenda__alt { color: var(--fg-suave); }
+    .agenda__alt .link { margin-left: 6px; }
+    @media (min-width: 1100px) {
+      .agenda__grid { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(56px, 6vw, 88px); }
+      .agenda__intro { position: sticky; top: 128px; }
+    }
+
+    .booking {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--raio);
+      background: var(--branco);
+      padding: clamp(22px, 4vw, 48px);
+      box-shadow: 0 40px 90px -40px rgba(0, 0, 0, .55);
+    }
+    .booking__ramo {
+      position: absolute;
+      top: 6px;
+      right: -38px;
+      width: 240px;
+      color: var(--verde-folha);
+      opacity: .08;
+      transform: rotate(-16deg);
+      pointer-events: none;
+    }
+
+    .stepper { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 36px; }
+    .stepper__item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-top: 14px;
+      border-top: 2px solid var(--linha);
+      font: 500 .68rem/1.2 var(--fonte-texto);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--fg-suave);
+    }
+    .stepper__item::before {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; top: -2px;
+      height: 2px;
+      background: var(--dourado);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 600ms var(--ease-out);
+    }
+    .stepper__item.is-active::before, .stepper__item.is-done::before { transform: scaleX(1); }
+    .stepper__item.is-active { color: var(--fg); }
+    .stepper__num {
+      flex: none;
+      display: grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1px solid var(--linha);
+      font-size: .72rem;
+      letter-spacing: 0;
+      transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease;
+    }
+    .stepper__item.is-active .stepper__num { background: var(--verde-profundo); border-color: var(--verde-profundo); color: var(--dourado-claro); }
+    .stepper__item.is-done .stepper__num { background: var(--dourado); border-color: var(--dourado); color: var(--verde-profundo); }
+    @media (max-width: 719.98px) { .stepper__label { display: none; } }
+
+    .step__title { display: block; width: 100%; font: 400 clamp(1.8rem, 1.5rem + 1vw, 2.3rem)/1.15 var(--fonte-titulo); color: var(--fg); margin-bottom: 24px; padding: 0; }
+    .step__title:focus { outline: none; }
+    .step.is-entering { animation: step-in 420ms var(--ease-out) both; }
+    .step.is-entering[data-dir="back"] { animation-name: step-in-back; }
+    @keyframes step-in { from { opacity: 0; transform: translateX(14px); } }
+    @keyframes step-in-back { from { opacity: 0; transform: translateX(-14px); } }
+
+    .step__actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 16px 20px;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--linha);
+    }
+    .step__actions [data-back] { margin-right: auto; }
+
+    .choices { display: grid; gap: 12px; }
+    @media (min-width: 640px) {
+      .choices--services { grid-template-columns: 1fr 1fr; }
+      .choice--feature { grid-column: 1 / -1; }
+    }
+    .choice {
+      position: relative;
+      display: grid;
+      grid-template-columns: 48px 1fr auto;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 18px;
+      border-radius: var(--raio-campo);
+      border: 1px solid var(--linha);
+      background: var(--campo);
+      cursor: pointer;
+      transition: border-color 250ms ease, background-color 250ms ease, box-shadow 250ms ease, transform 160ms var(--ease-out);
+    }
+    .choice:active { transform: scale(.99); }
+    .choice input { position: absolute; opacity: 0; pointer-events: none; }
+    .choice__icon, .choice__avatar {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: color-mix(in oklab, var(--areia) 75%, var(--campo));
+      color: var(--verde-profundo);
+      font-size: 1.4rem;
+      transition: background-color 250ms ease, color 250ms ease;
+    }
+    .choice__avatar { font: 500 1.1rem/1 var(--fonte-marca); }
+    .choice__name { display: block; font: 500 1.35rem/1.2 var(--fonte-titulo); color: var(--fg); }
+    .choice__desc { display: block; margin-top: 2px; font-size: .88rem; line-height: 1.45; color: var(--fg-suave); }
+    .choice__check {
+      display: grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1px solid var(--linha);
+      color: transparent;
+      font-size: .85rem;
+      transition: background-color 250ms ease, border-color 250ms ease, color 250ms ease;
+    }
+    .choice:has(input:checked) {
+      border-color: var(--dourado);
+      box-shadow: inset 0 0 0 1px var(--dourado);
+      background: color-mix(in oklab, var(--areia) 28%, var(--campo));
+    }
+    .choice:has(input:checked) .choice__icon,
+    .choice:has(input:checked) .choice__avatar { background: var(--verde-profundo); color: var(--dourado-claro); }
+    .choice:has(input:checked) .choice__check { background: var(--verde-profundo); border-color: var(--verde-profundo); color: var(--dourado-claro); }
+    .choice:has(input:focus-visible) { outline: 2px solid var(--foco); outline-offset: 2px; }
+    @media (hover: hover) and (pointer: fine) {
+      .choice:hover { border-color: color-mix(in oklab, var(--dourado) 65%, transparent); }
+    }
+    .choice__tag {
+      display: inline-block;
+      margin-left: 8px;
+      padding: 3px 8px;
+      border-radius: var(--raio-botao);
+      background: color-mix(in oklab, var(--areia) 70%, transparent);
+      font: 500 .62rem/1.3 var(--fonte-texto);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--destaque);
+      vertical-align: middle;
+    }
+
+    /* Data e horário */
+    .schedule { display: grid; gap: 32px; }
+    @media (min-width: 760px) { .schedule { grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); gap: 40px; } }
+    .cal__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .cal__month { font: 500 1.5rem/1 var(--fonte-titulo); color: var(--fg); }
+    .cal__nav { display: flex; gap: 8px; }
+    .cal__weekdays, .cal__grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+    .cal__weekdays span { font: 500 .68rem/2.2 var(--fonte-texto); letter-spacing: .12em; text-align: center; color: var(--fg-suave); }
+    .cal__day {
+      position: relative;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      font: 500 .95rem/1 var(--fonte-texto);
+      font-variant-numeric: tabular-nums;
+      color: var(--fg);
+      transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+    }
+    .cal__day::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 16%;
+      width: 4px;
+      height: 4px;
+      margin-left: -2px;
+      border-radius: 50%;
+      background: var(--dourado);
+    }
+    .cal__day:disabled { color: color-mix(in oklab, var(--tinta-suave) 42%, transparent); cursor: default; }
+    .cal__day:disabled::after { display: none; }
+    .cal__day.is-today { border-color: var(--linha); }
+    .cal__day[aria-pressed="true"] { background: var(--verde-profundo); border-color: var(--dourado); color: var(--dourado-claro); }
+    .cal__day[aria-pressed="true"]::after { background: var(--dourado-claro); }
+    @media (hover: hover) and (pointer: fine) {
+      .cal__day:not(:disabled):not([aria-pressed="true"]):hover { background: color-mix(in oklab, var(--areia) 60%, transparent); }
+    }
+    .cal__legend { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: .82rem; color: var(--fg-suave); }
+    .cal__legend::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--dourado); }
+
+    .slots-panel { display: grid; align-content: start; gap: 16px; }
+    .slots-panel__title { font: 500 1.5rem/1.15 var(--fonte-titulo); color: var(--fg); }
+    .slots-panel__hint { margin-top: -8px; font-size: .88rem; color: var(--fg-suave); }
+    .slots-panel__hint:empty { display: none; }
+    .slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(88px, 1fr)); gap: 8px; }
+    .slots__empty {
+      grid-column: 1 / -1;
+      display: grid;
+      justify-items: center;
+      gap: 10px;
+      padding: 32px 16px;
+      border: 1px dashed var(--linha);
+      border-radius: var(--raio-campo);
+      text-align: center;
+      font-size: .92rem;
+      color: var(--fg-suave);
+    }
+    .slots__empty i { font-size: 2rem; color: var(--dourado-escuro); }
+    .slot {
+      height: 46px;
+      border-radius: var(--raio-botao);
+      border: 1px solid var(--linha);
+      background: var(--campo);
+      font: 500 .92rem/1 var(--fonte-texto);
+      font-variant-numeric: tabular-nums;
+      color: var(--fg);
+      transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease, transform 160ms var(--ease-out);
+    }
+    .slot:active { transform: scale(.96); }
+    .slot:disabled { cursor: not-allowed; border-style: dashed; color: color-mix(in oklab, var(--tinta-suave) 45%, transparent); text-decoration: line-through; }
+    .slot[aria-pressed="true"] { background: var(--verde-profundo); border-color: var(--dourado); color: var(--dourado-claro); }
+    @media (hover: hover) and (pointer: fine) { .slot:not(:disabled):not([aria-pressed="true"]):hover { border-color: var(--dourado); } }
+    .slot.is-entering { animation: slot-in 360ms var(--ease-out) both; animation-delay: calc(var(--i, 0) * 28ms); }
+    @keyframes slot-in { from { opacity: 0; transform: translateY(6px); } }
+    .slots__note { display: flex; gap: 8px; align-items: center; font-size: .82rem; color: var(--fg-suave); }
+    .slots__note i { font-size: 1rem; color: var(--dourado-escuro); }
+
+    /* Seus dados */
+    .summary {
+      display: grid;
+      margin-bottom: 28px;
+      padding: 4px 20px;
+      border-radius: var(--raio-campo);
+      background: color-mix(in oklab, var(--areia) 45%, var(--branco));
+    }
+    .summary > div { display: grid; grid-template-columns: 140px 1fr auto; align-items: baseline; gap: 12px; padding: 13px 0; }
+    .summary > div + div { border-top: 1px solid var(--linha); }
+    .summary dt { font: 500 .68rem/1.4 var(--fonte-texto); letter-spacing: .16em; text-transform: uppercase; color: var(--fg-suave); }
+    .summary dd { font: 500 1.12rem/1.3 var(--fonte-titulo); font-variant-numeric: lining-nums; color: var(--fg); }
+    .summary__edit { font-size: .82rem; color: var(--destaque); text-decoration: underline; text-underline-offset: 3px; padding: 4px 0; }
+    @media (max-width: 559.98px) {
+      .summary > div { grid-template-columns: 1fr auto; row-gap: 2px; }
+      .summary dt { grid-column: 1 / -1; }
+    }
+
+    .fields { display: grid; gap: 20px 16px; }
+    @media (min-width: 640px) { .fields { grid-template-columns: 1fr 1fr; } .field--full { grid-column: 1 / -1; } }
+    .field label { display: block; margin-bottom: 8px; font: 500 .82rem/1.3 var(--fonte-texto); letter-spacing: .02em; color: var(--fg); }
+    .field__opt { font-weight: 400; color: var(--fg-suave); }
+    .field input[type="text"], .field input[type="tel"], .field input[type="email"], .field textarea {
+      width: 100%;
+      min-height: 52px;
+      padding: 14px 16px;
+      border-radius: var(--raio-campo);
+      border: 1px solid color-mix(in oklab, var(--verde-profundo) 26%, transparent);
+      background: var(--campo);
+      font-size: 1rem;
+      transition: border-color 200ms ease, box-shadow 200ms ease;
+    }
+    .field textarea { min-height: 108px; resize: vertical; line-height: 1.5; }
+    .field ::placeholder { color: color-mix(in oklab, var(--tinta-suave) 85%, transparent); opacity: 1; }
+    .field input:focus, .field textarea:focus {
+      outline: none;
+      border-color: var(--dourado-escuro);
+      box-shadow: 0 0 0 4px color-mix(in oklab, var(--dourado) 24%, transparent);
+    }
+    .field [aria-invalid="true"] { border-color: var(--erro); }
+    .field-error { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: .86rem; line-height: 1.4; color: var(--erro); }
+    .field-error:empty { display: none; }
+    .field-error i { font-size: 1.05rem; flex: none; }
+
+    .field .check {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 12px;
+      align-items: start;
+      margin: 0;
+      font: 400 .92rem/1.55 var(--fonte-texto);
+      letter-spacing: 0;
+      color: var(--fg-suave);
+      cursor: pointer;
+    }
+    .check input {
+      appearance: none;
+      display: grid;
+      place-items: center;
+      width: 22px;
+      height: 22px;
+      margin: 1px 0 0;
+      border-radius: 6px;
+      border: 1px solid color-mix(in oklab, var(--verde-profundo) 38%, transparent);
+      background: var(--campo);
+      cursor: pointer;
+      transition: background-color 200ms ease, border-color 200ms ease;
+    }
+    .check input::after {
+      content: '';
+      width: 10px;
+      height: 5px;
+      border-left: 2px solid var(--dourado-claro);
+      border-bottom: 2px solid var(--dourado-claro);
+      transform: translateY(-1px) rotate(-45deg) scale(0);
+      transition: transform 200ms var(--ease-out);
+    }
+    .check input:checked { background: var(--verde-profundo); border-color: var(--verde-profundo); }
+    .check input:checked::after { transform: translateY(-1px) rotate(-45deg) scale(1); }
+    .check input[aria-invalid="true"] { border-color: var(--erro); }
+
+    .is-spinning { animation: spin 900ms linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .result { display: grid; justify-items: center; text-align: center; padding: 12px 0 4px; }
+    .result:focus { outline: none; }
+    .result__icon { font-size: 3.6rem; line-height: 1; color: var(--dourado); }
+    .result .badge { margin-top: 18px; }
+    .result__title { margin-top: 16px; font: 400 clamp(2.1rem, 1.7rem + 1.4vw, 2.9rem)/1.1 var(--fonte-titulo); color: var(--fg); }
+    .result__text { max-width: 48ch; margin-top: 12px; color: var(--fg-suave); }
+    .result .summary { width: min(100%, 540px); margin: 28px 0 0; text-align: left; }
+    .result__actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px 24px; margin-top: 32px; }
+
+    /* ---------- Contato ---------- */
+    .contato__grid { display: grid; gap: 56px; align-items: center; }
+    .contato__info { display: grid; gap: 26px; justify-items: start; }
+    .contact-list { display: grid; width: 100%; margin-top: 8px; }
+    .contact-list li { display: grid; grid-template-columns: 40px 1fr; gap: 16px; padding: 20px 0; }
+    .contact-list li + li { border-top: 1px solid var(--linha); }
+    .contact-list i { font-size: 1.6rem; color: var(--dourado-escuro); line-height: 1; margin-top: 2px; }
+    .contact-list__label {
+      display: block;
+      margin-bottom: 4px;
+      font: 500 .68rem/1.4 var(--fonte-texto);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--fg-suave);
+    }
+    .contact-list a, .contact-list p { font: 500 1.25rem/1.35 var(--fonte-titulo); font-variant-numeric: lining-nums; color: var(--fg); }
+    .contact-list a { text-decoration: underline; text-decoration-color: color-mix(in oklab, var(--dourado) 60%, transparent); text-decoration-thickness: 1px; text-underline-offset: 4px; transition: text-decoration-color 300ms ease; }
+    @media (hover: hover) and (pointer: fine) { .contact-list a:hover { text-decoration-color: var(--dourado-escuro); } }
+    .contato__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; margin-top: 8px; }
+    .contato__map {
+      position: relative;
+      aspect-ratio: 1;
+      overflow: hidden;
+      border-radius: var(--raio);
+      background: var(--areia);
+      box-shadow: 0 0 0 1px var(--linha);
+    }
+    .contato__map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(.25) sepia(.08); }
+    @media (min-width: 1024px) {
+      .contato__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(56px, 7vw, 112px); }
+      .contato__map { aspect-ratio: 5 / 6; }
+    }
+
+    /* ---------- Footer ---------- */
+    .footer {
+      padding-block: clamp(80px, 9vw, 128px) 32px;
+      background: var(--verde-noite);
+      text-align: center;
+    }
+    .footer__brand { display: flex; align-items: center; justify-content: center; gap: clamp(12px, 3vw, 32px); }
+    .footer__brand .ramo { width: clamp(84px, 12vw, 150px); color: var(--dourado); }
+    .brand--footer { flex-direction: column; gap: 14px; color: var(--creme); }
+    .brand--footer .brand__mono { font-size: clamp(3rem, 2rem + 4vw, 4.6rem); letter-spacing: .02em; }
+    .brand--footer .brand__rule { width: 48px; height: 1px; }
+    .brand--footer .brand__name { font-size: clamp(.9rem, .8rem + .4vw, 1.15rem); letter-spacing: .42em; margin-right: -.42em; }
+    .footer__tagline { margin-top: 28px; font: italic 400 clamp(1.25rem, 1.1rem + .6vw, 1.6rem)/1.4 var(--fonte-titulo); color: var(--fg-suave); text-wrap: balance; }
+    .footer__nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 28px; margin-top: 44px; }
+    .footer__nav a { display: inline-block; padding: 10px 0; font: 500 .7rem/1 var(--fonte-texto); letter-spacing: .18em; text-transform: uppercase; color: var(--creme); }
+    @media (hover: hover) and (pointer: fine) { .footer__nav a:hover { color: var(--dourado-claro); } }
+    .footer__social { display: flex; justify-content: center; gap: 12px; margin-top: 28px; }
+    .footer__address { margin-top: 24px; font-size: .92rem; color: var(--fg-suave); }
+    .footer__bottom {
+      display: grid;
+      gap: 10px;
+      justify-items: center;
+      margin-top: 64px;
+      padding-top: 28px;
+      border-top: 1px solid var(--linha);
+      font-size: .82rem;
+      color: var(--fg-suave);
+    }
+    .footer__bottom .inline-link { color: var(--dourado-claro); }
+    @media (min-width: 900px) {
+      .footer__bottom { grid-template-columns: 1fr auto 1fr; align-items: center; text-align: left; }
+      .footer__bottom > :nth-child(2) { justify-self: center; }
+      .footer__bottom > :last-child { justify-self: end; text-align: right; }
+    }
+
+    /* ---------- Revelação ao rolar ---------- */
+    .js [data-reveal] {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 900ms var(--ease-out), transform 1100ms var(--ease-out);
+      transition-delay: calc(var(--d, 0) * 90ms);
+    }
+    .js [data-reveal].is-visible { opacity: 1; transform: none; }
+    .js [data-reveal="clip"] {
+      opacity: 1;
+      transform: none;
+      clip-path: inset(100% 0 0 0);
+      transition: clip-path 1300ms var(--ease-in-out);
+      transition-delay: calc(var(--d, 0) * 90ms);
+    }
+    .js [data-reveal="clip"].is-visible { clip-path: inset(0 0 0 0); }
+    .js [data-reveal="clip"] img {
+      transform: scale(1.14);
+      transition: transform 1800ms var(--ease-out);
+      transition-delay: calc(var(--d, 0) * 90ms);
+    }
+    .js [data-reveal="clip"].is-visible img { transform: none; }
+
+    /* Profundidade no hero: as fotos laterais derivam devagar com a rolagem (só CSS) */
+    @supports (animation-timeline: view()) {
+      @media (prefers-reduced-motion: no-preference) {
+        .hero__img--side { animation: hero-drift linear both; animation-timeline: view(); animation-range: cover; }
+      }
+    }
+    @keyframes hero-drift { from { translate: 0 44px; } to { translate: 0 -56px; } }
+
+    /* ---------- Movimento reduzido: só opacidade, sem deslocamentos ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      .js [data-reveal], .js [data-reveal="clip"] { transform: none; clip-path: none; transition: opacity 400ms ease; }
+      .js [data-reveal="clip"] { opacity: 0; }
+      .js [data-reveal="clip"].is-visible { opacity: 1; }
+      .js [data-reveal="clip"] img, .svc__panel img { transform: none !important; filter: none !important; transition: none; }
+      .quote, .quote.is-active { transform: none; filter: none; }
+      .menu__list li { transform: none; }
+      .step.is-entering, .slot.is-entering { animation: none; }
+      .lightbox__figure, .modal { transform: none !important; }
+      .btn:active, .chip:active, .choice:active, .slot:active, .icon-btn:active { transform: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Ornamento da marca: ramo de oliveira (reutilizado com <use href="#ramo">) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="ramo" viewBox="0 0 168 64" fill="currentColor"><path d="M6 50Q78 46 154 14" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/><path d="M20.44 48.92C21.76 41.76 29.13 36.10 35.71 34.50C33.74 40.98 27.67 48.01 20.44 48.92ZM25.51 48.41C32.78 47.86 40.12 53.55 43.35 59.50C36.58 59.24 28.24 55.17 25.51 48.41ZM39.82 46.61C40.94 39.97 47.68 34.63 53.74 33.06C52.01 39.08 46.49 45.67 39.82 46.61ZM44.93 45.84C51.58 44.77 58.80 49.43 62.23 54.67C55.97 54.96 47.96 51.85 44.93 45.84ZM59.34 43.30C60.29 37.18 66.41 32.20 71.96 30.68C70.44 36.23 65.46 42.35 59.34 43.30ZM64.49 42.27C70.50 40.78 77.46 44.51 81.00 49.04C75.29 49.78 67.72 47.55 64.49 42.27ZM79.00 39.00C79.80 33.41 85.33 28.80 90.37 27.36C89.05 32.430 84.57 38.07 79.00 39.00ZM84.18 37.71C89.54 35.91 96.14 38.78 99.69 42.64C94.56 43.73 87.52 42.26 84.18 37.71ZM98.80 33.70C99.48 28.65 104.43 24.43 108.97 23.08C107.82 27.68 103.82 32.81 98.80 33.70ZM104.03 32.15C108.72 30.15 114.87 32.26 118.35 35.47C113.80 36.83 107.35 36.01 104.03 32.15ZM118.75 27.41C119.31 22.89 123.70 19.09 127.75 17.85C126.75 21.96 123.23 26.57 118.75 27.41ZM124.01 25.59C128.05 23.49 133.67 24.94 136.99 27.56C133.04 29.08 127.24 28.80 124.01 25.59ZM138.84 20.12C139.31 16.14 143.15 12.77 146.70 11.66C145.85 15.28 142.77 19.36 138.84 20.12ZM144.14 18.04C147.54 15.92 152.57 16.82 155.65 18.90C152.29 20.50 147.19 20.64 144.14 18.04ZM153.00 14.50C154.79 10.40 160.00 7.96 164.16 7.84C162.08 11.44 157.46 14.87 153.00 14.50Z"/><path d="M58.36 43.49L59.86 48.39" fill="none" stroke="currentColor" stroke-width=".8"/><ellipse cx="59.86" cy="50.99" rx="2.7" ry="3.5" transform="rotate(-12 59.86 50.99)"/><path d="M90.87 35.94L92.37 39.84" fill="none" stroke="currentColor" stroke-width=".8"/><ellipse cx="92.37" cy="42.44" rx="2.7" ry="3.5" transform="rotate(-12 92.37 42.44)"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- ==================================================================
+       1. HEADER E NAVEGAÇÃO
+       ================================================================== -->
+  <header class="header" data-header>
+    <nav class="header__inner" aria-label="Principal">
+      <div class="header__start">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu" data-menu-toggle>
+          <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span></span>
+          <span class="menu-toggle__label" aria-hidden="true" data-menu-label>Menu</span>
+        </button>
+        <ul class="nav-list" role="list">
+          <li><a class="nav-link" href="#universo">O Studium</a></li>
+          <li><a class="nav-link" href="#dia-da-noiva">Dia da Noiva</a></li>
+          <li><a class="nav-link" href="#servicos">Serviços</a></li>
+        </ul>
+      </div>
+
+      <!-- PLACEHOLDER: monograma tipográfico provisório. Trocar pelo logo oficial (SVG). -->
+      <a class="brand" href="#topo" aria-label="JV Studium, voltar ao início">
+        <span class="brand__mono" aria-hidden="true">JV</span>
+        <span class="brand__rule" aria-hidden="true"></span>
+        <span class="brand__name" aria-hidden="true">Studium</span>
+      </a>
+
+      <div class="header__end">
+        <ul class="nav-list" role="list">
+          <li><a class="nav-link" href="#galeria">Galeria</a></li>
+          <li><a class="nav-link" href="#contato">Contato</a></li>
+        </ul>
+        <a class="btn btn--sm header__cta" href="#agendamento">
+          <span class="label-long">Agendar horário</span><span class="label-short" aria-hidden="true">Agendar</span>
+          <span class="btn__icon" aria-hidden="true"><i class="ph ph-arrow-right"></i></span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Menu móvel (abaixo de 1100px) -->
+  <div class="menu" id="menu" data-menu hidden>
+    <div class="menu__inner">
+      <ul class="menu__list" role="list">
+        <li style="--i:0"><a href="#universo">O Studium</a></li>
+        <li style="--i:1"><a href="#dia-da-noiva">Dia da Noiva</a></li>
+        <li style="--i:2"><a href="#servicos">Serviços</a></li>
+        <li style="--i:3"><a href="#galeria">Galeria</a></li>
+        <li style="--i:4"><a href="#depoimentos">Depoimentos</a></li>
+        <li style="--i:5"><a href="#contato">Contato</a></li>
+      </ul>
+      <div class="menu__foot">
+        <a class="btn" href="#agendamento">Agendar horário <span class="btn__icon" aria-hidden="true"><i class="ph ph-arrow-right"></i></span></a>
+        <div class="menu__social">
+          <a class="icon-btn" href="#" data-wa data-wa-msg="Olá! Vim pelo site do JV Studium e gostaria de mais informações." aria-label="WhatsApp do JV Studium"><i class="ph-light ph-whatsapp-logo" aria-hidden="true"></i></a>
+          <a class="icon-btn" href="https://www.instagram.com/jvstudium/" target="_blank" rel="noopener" data-instagram aria-label="Instagram do JV Studium"><i class="ph-light ph-instagram-logo" aria-hidden="true"></i></a>
+        </div>
+        <svg class="ramo" viewBox="0 0 168 64" aria-hidden="true" focusable="false"><use href="#ramo"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <main id="conteudo">
+
+    <!-- ==================================================================
+         2. HERO
+         ================================================================== -->
+    <section class="hero" id="topo" aria-labelledby="hero-title">
+      <div class="hero__text">
+        <p class="eyebrow" data-reveal>Beleza, estética e bem-estar</p>
+        <h1 class="hero__title" id="hero-title" data-reveal style="--d:1"><span class="sr-only">JV Studium: </span>A arte do <em>cuidado</em></h1>
+        <p class="lead hero__lead" data-reveal style="--d:2">Cabelo, maquiagem, estética e bem-estar em um espaço botânico pensado para você desacelerar.</p>
+        <div class="hero__actions" data-reveal style="--d:3">
+          <a class="btn" href="#agendamento">Agendar horário <span class="btn__icon" aria-hidden="true"><i class="ph ph-arrow-right"></i></span></a>
+          <a class="link" href="#universo">Conhecer o espaço</a>
+        </div>
+      </div>
+
+      <div class="hero__gallery">
+        <figure class="hero__img hero__img--side" data-reveal="clip" style="--d:5">
+          <img src="https://images.unsplash.com/photo-1560264641-1b5191cc63e2?auto=format&amp;fit=crop&amp;w=480&amp;h=640&amp;q=75"
+               srcset="https://images.unsplash.com/photo-1560264641-1b5191cc63e2?auto=format&amp;fit=crop&amp;w=480&amp;h=640&amp;q=75 480w, https://images.unsplash.com/photo-1560264641-1b5191cc63e2?auto=format&amp;fit=crop&amp;w=720&amp;h=960&amp;q=75 720w"
+               sizes="(max-width: 640px) 40vw, 340px" width="480" height="640" alt="Cabelos ondulados em tons de cobre, vistos de perto" decoding="async">
+        </figure>
+        <figure class="hero__img hero__img--main" data-reveal="clip" style="--d:3">
+          <img src="https://images.unsplash.com/photo-1624819318229-f006595a4993?auto=format&amp;fit=crop&amp;w=640&amp;h=800&amp;q=75"
+               srcset="https://images.unsplash.com/photo-1624819318229-f006595a4993?auto=format&amp;fit=crop&amp;w=640&amp;h=800&amp;q=75 640w, https://images.unsplash.com/photo-1624819318229-f006595a4993?auto=format&amp;fit=crop&amp;w=960&amp;h=1200&amp;q=75 960w"
+               sizes="(max-width: 640px) 64vw, 460px" width="640" height="800" alt="Retrato de mulher com pele iluminada e maquiagem em tons nude" fetchpriority="high">
+        </figure>
+        <figure class="hero__img hero__img--side" data-reveal="clip" style="--d:6">
+          <img src="https://images.unsplash.com/photo-1769184614133-e0cad8d2a1be?auto=format&amp;fit=crop&amp;w=480&amp;h=640&amp;q=75"
+               srcset="https://images.unsplash.com/photo-1769184614133-e0cad8d2a1be?auto=format&amp;fit=crop&amp;w=480&amp;h=640&amp;q=75 480w, https://images.unsplash.com/photo-1769184614133-e0cad8d2a1be?auto=format&amp;fit=crop&amp;w=720&amp;h=960&amp;q=75 720w"
+               sizes="(max-width: 640px) 40vw, 340px" width="480" height="640" alt="Folhas de palmeira e toalha clara sob luz natural" decoding="async">
+        </figure>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         3. O UNIVERSO JV STUDIUM
+         TEXTO PROVISÓRIO: validar com o JV Studium. Sem dados inventados
+         (história, certificações, números); só ambiente e proposta.
+         ================================================================== -->
+    <section class="section universo" id="universo" aria-labelledby="universo-title">
+      <div class="container universo__grid">
+        <div class="universo__intro">
+          <h2 class="h2" id="universo-title" data-reveal>Um refúgio de beleza e <em>bem-estar</em></h2>
+          <div class="text" data-reveal style="--d:1">
+            <p>O JV&nbsp;Studium é um espaço dedicado à beleza, à estética e ao bem-estar, onde cada atendimento acontece no seu tempo e com atenção individual.</p>
+            <p>Luz natural, madeira clara e muito verde compõem um ambiente sereno, para que cada visita seja um momento de pausa.</p>
+          </div>
+        </div>
+
+        <div class="universo__media">
+          <svg class="ramo universo__ramo" viewBox="0 0 168 64" aria-hidden="true" focusable="false"><use href="#ramo"/></svg>
+          <figure class="universo__main" data-reveal="clip">
+            <img src="https://images.unsplash.com/photo-1706629505300-168aa1604912?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=75"
+                 srcset="https://images.unsplash.com/photo-1706629505300-168aa1604912?auto=format&amp;fit=crop&amp;w=720&amp;h=900&amp;q=75 720w, https://images.unsplash.com/photo-1706629505300-168aa1604912?auto=format&amp;fit=crop&amp;w=1080&amp;h=1350&amp;q=75 1080w"
+                 sizes="(max-width: 1023px) 72vw, 500px" width="720" height="900" alt="Salão com espelhos em arco, painéis de madeira clara e poltronas em tom areia" loading="lazy" decoding="async">
+          </figure>
+          <div class="universo__frame">
+            <figure class="universo__detail" data-reveal="clip" style="--d:3">
+              <img src="https://images.unsplash.com/photo-1707226614807-2550edcec13b?auto=format&amp;fit=crop&amp;w=420&amp;h=560&amp;q=75"
+                   srcset="https://images.unsplash.com/photo-1707226614807-2550edcec13b?auto=format&amp;fit=crop&amp;w=420&amp;h=560&amp;q=75 420w, https://images.unsplash.com/photo-1707226614807-2550edcec13b?auto=format&amp;fit=crop&amp;w=630&amp;h=840&amp;q=75 630w"
+                   sizes="(max-width: 1023px) 40vw, 280px" width="420" height="560" alt="Jardim vertical com espelho redondo na parede" loading="lazy" decoding="async">
+            </figure>
+          </div>
+        </div>
+
+        <div class="universo__details">
+          <ul class="pillars" role="list">
+            <li data-reveal>
+              <i class="ph-light ph-hand-heart" aria-hidden="true"></i>
+              <div><h3>Atendimento individual</h3><p>Cada visita começa com uma conversa sobre o que você deseja.</p></div>
+            </li>
+            <li data-reveal style="--d:1">
+              <i class="ph-light ph-plant" aria-hidden="true"></i>
+              <div><h3>Ambiente botânico</h3><p>Verde, luz natural e calma para uma pausa de verdade.</p></div>
+            </li>
+            <li data-reveal style="--d:2">
+              <i class="ph-light ph-sparkle" aria-hidden="true"></i>
+              <div><h3>Cuidado completo</h3><p>Cabelo, maquiagem, estética e bem-estar no mesmo endereço.</p></div>
+            </li>
+          </ul>
+          <a class="link" href="#servicos" data-reveal style="--d:3">Conheça os serviços <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         4. DIA DA NOIVA
+         Etapas, pacotes e condições: confirmar com o JV Studium.
+         Expansão futura: o CTA passa a levar para /dia-da-noiva (página própria).
+         ================================================================== -->
+    <section class="section noiva on-dark" id="dia-da-noiva" aria-labelledby="noiva-title">
+      <div class="container noiva__grid">
+        <div class="noiva__media">
+          <div class="noiva__sticky">
+            <figure class="noiva__main" data-reveal="clip">
+              <img src="https://images.unsplash.com/photo-1629326017926-9cad9c909196?auto=format&amp;fit=crop&amp;w=720&amp;h=960&amp;q=75"
+                   srcset="https://images.unsplash.com/photo-1629326017926-9cad9c909196?auto=format&amp;fit=crop&amp;w=720&amp;h=960&amp;q=75 720w, https://images.unsplash.com/photo-1629326017926-9cad9c909196?auto=format&amp;fit=crop&amp;w=1080&amp;h=1440&amp;q=75 1080w"
+                   sizes="(max-width: 1023px) 90vw, 480px" width="720" height="960" alt="Noiva de costas com véu longo e acessório delicado no penteado" loading="lazy" decoding="async">
+            </figure>
+            <figure class="noiva__detail" data-reveal style="--d:4">
+              <img src="https://images.unsplash.com/photo-1660121870836-a29885278317?auto=format&amp;fit=crop&amp;w=400&amp;h=400&amp;q=75"
+                   srcset="https://images.unsplash.com/photo-1660121870836-a29885278317?auto=format&amp;fit=crop&amp;w=400&amp;h=400&amp;q=75 400w, https://images.unsplash.com/photo-1660121870836-a29885278317?auto=format&amp;fit=crop&amp;w=600&amp;h=600&amp;q=75 600w"
+                   sizes="(max-width: 1023px) 30vw, 170px" width="400" height="400" alt="Coque baixo com grampos de pérolas" loading="lazy" decoding="async">
+            </figure>
+          </div>
+        </div>
+
+        <div class="noiva__content">
+          <svg class="ramo noiva__ramo" viewBox="0 0 168 64" aria-hidden="true" focusable="false" data-reveal><use href="#ramo"/></svg>
+          <h2 class="noiva__title" id="noiva-title" data-reveal style="--d:1"><span class="script noiva__script">o seu</span> Dia da Noiva</h2>
+          <p class="lead" data-reveal style="--d:2">Uma experiência de preparação pensada para que você viva as horas antes do sim com calma, conforto e todo o cuidado que esse dia merece.</p>
+
+          <ol class="moments" role="list">
+            <li data-reveal>
+              <span class="moments__num" aria-hidden="true">I</span>
+              <div><h3>Recepção e acolhimento</h3><p>Um começo tranquilo, em um ambiente preparado para você.</p></div>
+            </li>
+            <li data-reveal style="--d:1">
+              <span class="moments__num" aria-hidden="true">II</span>
+              <div><h3>Spa e bem-estar</h3><p>Momentos de relaxamento para chegar leve ao grande dia.</p></div>
+            </li>
+            <li data-reveal style="--d:2">
+              <span class="moments__num" aria-hidden="true">III</span>
+              <div><h3>Cabelo e maquiagem</h3><p>Penteado e maquiagem pensados com você, em harmonia com o seu estilo.</p></div>
+            </li>
+            <li data-reveal style="--d:3">
+              <span class="moments__num" aria-hidden="true">IV</span>
+              <div><h3>Últimos detalhes</h3><p>Retoques finais para seguir até a cerimônia pronta e serena.</p></div>
+            </li>
+          </ol>
+
+          <p class="noiva__note" data-reveal>Pacotes, duração e serviços incluídos são definidos em uma conversa com a nossa equipe.</p>
+          <div class="noiva__actions" data-reveal>
+            <a class="btn btn--light" href="#agendamento" data-book="noiva">Consultar disponibilidade <span class="btn__icon" aria-hidden="true"><i class="ph ph-arrow-right"></i></span></a>
+            <a class="link" href="#" data-wa data-wa-msg="Olá! Gostaria de saber mais sobre o Dia da Noiva no JV Studium.">Conversar no WhatsApp <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         5. SERVIÇOS E EXPERIÊNCIAS
+         Categorias e descrições: confirmar com o JV Studium (ordem por
+         relevância comercial). Desktop: lista + painel; mobile: acordeão.
+         ================================================================== -->
+    <section class="section servicos" id="servicos" aria-labelledby="servicos-title">
+      <div class="container">
+        <header class="section-head section-head--center">
+          <h2 class="h2" id="servicos-title" data-reveal>Serviços e experiências</h2>
+          <p class="lead" data-reveal style="--d:1">Do cuidado do dia a dia às ocasiões especiais, conheça as experiências do JV&nbsp;Studium.</p>
+        </header>
+
+        <div class="svc" data-services>
+          <div class="svc__item is-active">
+            <h3 class="svc__head" data-reveal>
+              <button class="svc__tab" type="button" id="svc-tab-cabelo" aria-expanded="true" aria-controls="svc-cabelo">
+                <i class="ph-light ph-scissors svc__icon" aria-hidden="true"></i>
+                <span class="svc__name">Cabelo</span>
+                <i class="ph ph-arrow-right svc__arrow" aria-hidden="true"></i>
+                <i class="ph ph-caret-down svc__caret" aria-hidden="true"></i>
+              </button>
+            </h3>
+            <div class="svc__panel" id="svc-cabelo" role="region" aria-labelledby="svc-tab-cabelo">
+              <div class="svc__panel-inner">
+                <figure class="svc__media">
+                  <img src="https://images.unsplash.com/photo-1564141696939-9eb6e957ccfc?auto=format&amp;fit=crop&amp;w=960&amp;h=720&amp;q=75"
+                       srcset="https://images.unsplash.com/photo-1564141696939-9eb6e957ccfc?auto=format&amp;fit=crop&amp;w=960&amp;h=720&amp;q=75 960w, https://images.unsplash.com/photo-1564141696939-9eb6e957ccfc?auto=format&amp;fit=crop&amp;w=1440&amp;h=1080&amp;q=75 1440w"
+                       sizes="(max-width: 1023px) 92vw, 700px" width="960" height="720" alt="Mulher de olhos fechados com cabelos longos, escuros e cacheados" loading="lazy" decoding="async">
+                </figure>
+                <div class="svc__body">
+                  <p>Cortes, coloração, tratamentos e finalizações pensados para a saúde e a beleza dos fios.</p>
+                  <a class="btn" href="#agendamento" data-book="cabelo">Agendar horário <span class="btn__icon" aria-hidden="true"><i class="ph ph-arrow-right"></i></span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="svc__item">
+            <h3 class="svc__head" data-reveal style="--d:1">
+              <button class="svc__tab" type="button" id="svc-tab-maquiagem" aria-expanded="false" aria-controls="svc-maquiagem">
+                <i class="ph-light ph-paint-brush svc__icon" aria-hidden="true"></i>
+                <span class="svc__name">Maquiagem</span>
+                <i class="ph ph-arrow-right svc__arrow" aria-hidden="true"></i>
+                <i class="ph ph-caret-down svc__caret" aria-hidden="true"></i>
+              </button>
+            </h3>
+            <div class="svc__panel" id="svc-maquiagem" role="region" aria-labelledby="svc-tab-maquiagem">
+              <div class="svc__panel-inner">
+                <figure class="svc__media">
+                  <img src="https://images.unsplash.com/photo-1622336889416-8d790ad807d7?auto=format&amp;fit=crop&amp;w=960&amp;h=720&amp;q=75"
+                       srcset="https://images.unsplash.com/photo-1622336889416-8d790ad807d7?auto=format&amp;fit=crop&amp;w=960&amp;h=720&amp;q=75 960w, https://images.unsplash.com/photo-1622336889416-8d790ad807d7?auto=format&amp;fit=crop&amp;w=1440&amp;h=1080&amp;q=75 1440w"
+                       sizes="(max-width: 1023px) 92vw, 700px" width="960" height="720" alt="Maquiadora aplicando delineador com pincel fino" loading="lazy" decoding="async">
+                </figure>
+                <div class="svc__body">
+                  <p>Produções para eventos e ocasiões especiais, com acabamento leve e luminoso.</p>
+                  <a class="btn" href="#agendamento" data-book="maquiagem">Agendar horário <span class="btn__icon" aria-hidden="true"><i class="ph ph-arrow-right"></i></span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="svc__item">
+            <h3 class="svc__head" data-reveal style="--d:2">
+              <button class="svc__tab" type="button" id="svc-tab-estetica" aria-expanded="false" aria-controls="svc-estetica">
+                <i class="ph-light ph-drop svc__icon" aria-hidden="true"></i>
+                <span class="svc__name">Estética</span>
+                <i class="ph ph-arrow-right svc__arrow" aria-hidden="true"></i>
+                <i class="ph ph-caret-down svc__caret" aria-hidden="true"></i>
+              </button>
+            </h3>
+            <div class="svc__panel" id="svc-estetica" role="region" aria-labelledby="svc-tab-estetica">
+              <div class="svc__panel-inner">
+                <figure class="svc__media">
+                  <img src="https://images.unsplash.com/photo-1761718210089-ba3bb5ccb54f?auto=format&amp;fit=crop&amp;w=960&amp;h=720&amp;q=75&amp;crop=faces,center"
+                       srcset="https://images.unsplash.com/photo-1761718210089-ba3bb5ccb54f?auto=format&amp;fit=crop&amp;w=960&amp;h=720&amp;q=75&amp;crop=faces,center 960w, https://images.unsplash.com/photo-1761718210089-ba3bb5ccb54f?auto=format&amp;fit=crop&amp;w=1440&amp;h=1080&amp;q=75&amp;crop=faces,center 1440w"
+                       sizes="(max-width: 1023px) 92vw, 700px" width="960" height="720" alt="Cliente recebendo máscara facial aplicada com pincel" loading="lazy" decoding="async">
+                </figure>
+                <div class="svc__body">
+                  <p>Cuidados com a pele do rosto e do corpo para realçar a sua beleza natural.</p>
+                  <a class="btn" href="#agendamento" data-book="estetica">Agendar horário <span class="btn__icon" aria-hidden="true"><i class="ph ph-arrow-right"></i></span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="svc__item">
+            <h3 class="svc__head" data-reveal style="--d:3">
+              <button class="svc__tab" type="button" id="svc-tab-bemestar" aria-expanded="false" aria-controls="svc-bemestar">
+                <i class="ph-light ph-flower-lotus svc__icon" aria-hidden="true"></i>
+                <span class="svc__name">Saúde e bem-estar</span>
+                <i class="ph ph-arrow-right svc__arrow" aria-hidden="true"></i>
+                <i class="ph ph-caret-down svc__caret" aria-hidden="true"></i>
+              </button>
+            </h3>
+            <div class="svc__panel" id="svc-bemestar" role="region" aria-labelledby="svc-tab-bemestar">
+              <div class="svc__panel-inner">
+                <figure class="svc__media">
+                  <img src="https://images.unsplash.com/photo-1745327883508-b6cd32e5dde5?auto=format&amp;fit=crop&amp;w=960&amp;h=720&amp;q=75"
+                       srcset="https://images.unsplash.com/photo-1745327883508-b6cd32e5dde5?auto=format&amp;fit=crop&amp;w=960&amp;h=720&amp;q=75 960w, https://images.unsplash.com/photo-1745327883508-b6cd32e5dde5?auto=format&amp;fit=crop&amp;w=1440&amp;h=1080&amp;q=75 1440w"
+                       sizes="(max-width: 1023px) 92vw, 700px" width="960" height="720" alt="Mãos fazendo massagem relaxante nas costas" loading="lazy" decoding="async">
+                </figure>
+                <div class="svc__body">
+                  <p>Experiências de relaxamento para equilibrar corpo e mente e renovar a energia.</p>
+                  <a class="btn" href="#agendamento" data-book="bemestar">Agendar horário <span class="btn__icon" aria-hidden="true"><i class="ph ph-arrow-right"></i></span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         6. GALERIA DE RESULTADOS
+         Fotos ilustrativas (Unsplash). Trocar por trabalhos reais do JV Studium,
+         com autorização das clientes. data-cat define o filtro de cada foto.
+         ================================================================== -->
+    <section class="section galeria" id="galeria" aria-labelledby="galeria-title">
+      <div class="container">
+        <header class="section-head section-head--center">
+          <h2 class="h2" id="galeria-title" data-reveal>Galeria</h2>
+          <p class="lead" data-reveal style="--d:1">Um pouco dos nossos trabalhos e do nosso espaço.<span class="galeria__note">Imagens ilustrativas do protótipo.</span></p>
+        </header>
+
+        <div class="filters" role="group" aria-label="Filtrar galeria" data-reveal style="--d:2">
+          <button class="chip" type="button" aria-pressed="true" data-filter="todos">Todos</button>
+          <button class="chip" type="button" aria-pressed="false" data-filter="cabelo">Cabelo</button>
+          <button class="chip" type="button" aria-pressed="false" data-filter="maquiagem">Maquiagem</button>
+          <button class="chip" type="button" aria-pressed="false" data-filter="noivas">Noivas</button>
+          <button class="chip" type="button" aria-pressed="false" data-filter="espaco">Espaço</button>
+        </div>
+        <p class="sr-only" aria-live="polite" data-gallery-status></p>
+
+        <ul class="gallery" role="list" data-gallery>
+          <li class="gallery__item" data-cat="cabelo" data-reveal>
+            <button class="gallery__btn" type="button" data-full="https://images.unsplash.com/photo-1638064432604-8da1fc75de09?auto=format&amp;fit=max&amp;w=1600&amp;q=80">
+              <span class="sr-only">Ampliar imagem: </span>
+              <img src="https://images.unsplash.com/photo-1638064432604-8da1fc75de09?auto=format&amp;fit=crop&amp;w=600&amp;h=750&amp;q=75" srcset="https://images.unsplash.com/photo-1638064432604-8da1fc75de09?auto=format&amp;fit=crop&amp;w=600&amp;h=750&amp;q=75 600w, https://images.unsplash.com/photo-1638064432604-8da1fc75de09?auto=format&amp;fit=crop&amp;w=900&amp;h=1125&amp;q=75 900w" sizes="(min-width: 1024px) 410px, 46vw" width="600" height="750" alt="Cabelo castanho-dourado com ondas suaves" loading="lazy" decoding="async">
+              <span class="gallery__zoom" aria-hidden="true"><i class="ph-light ph-plus"></i></span>
+            </button>
+          </li>
+          <li class="gallery__item" data-cat="maquiagem" data-reveal>
+            <button class="gallery__btn" type="button" data-full="https://images.unsplash.com/photo-1551392505-f4056032826e?auto=format&amp;fit=max&amp;w=1600&amp;q=80">
+              <span class="sr-only">Ampliar imagem: </span>
+              <img src="https://images.unsplash.com/photo-1551392505-f4056032826e?auto=format&amp;fit=crop&amp;w=750&amp;h=600&amp;q=75" srcset="https://images.unsplash.com/photo-1551392505-f4056032826e?auto=format&amp;fit=crop&amp;w=750&amp;h=600&amp;q=75 750w, https://images.unsplash.com/photo-1551392505-f4056032826e?auto=format&amp;fit=crop&amp;w=1125&amp;h=900&amp;q=75 1125w" sizes="(min-width: 1024px) 410px, 46vw" width="750" height="600" alt="Sombra pêssego e dourada nos olhos" loading="lazy" decoding="async">
+              <span class="gallery__zoom" aria-hidden="true"><i class="ph-light ph-plus"></i></span>
+            </button>
+          </li>
+          <li class="gallery__item" data-cat="noivas" data-reveal>
+            <button class="gallery__btn" type="button" data-full="https://images.unsplash.com/photo-1643216583837-f6d664d48eac?auto=format&amp;fit=max&amp;w=1600&amp;q=80">
+              <span class="sr-only">Ampliar imagem: </span>
+              <img src="https://images.unsplash.com/photo-1643216583837-f6d664d48eac?auto=format&amp;fit=crop&amp;w=600&amp;h=900&amp;q=75" srcset="https://images.unsplash.com/photo-1643216583837-f6d664d48eac?auto=format&amp;fit=crop&amp;w=600&amp;h=900&amp;q=75 600w, https://images.unsplash.com/photo-1643216583837-f6d664d48eac?auto=format&amp;fit=crop&amp;w=900&amp;h=1350&amp;q=75 900w" sizes="(min-width: 1024px) 410px, 46vw" width="600" height="900" alt="Noiva com véu longo olhando por cima do ombro" loading="lazy" decoding="async">
+              <span class="gallery__zoom" aria-hidden="true"><i class="ph-light ph-plus"></i></span>
+            </button>
+          </li>
+          <li class="gallery__item" data-cat="espaco" data-reveal>
+            <button class="gallery__btn" type="button" data-full="https://images.unsplash.com/photo-1760895535234-2c39c57cf187?auto=format&amp;fit=max&amp;w=1600&amp;q=80">
+              <span class="sr-only">Ampliar imagem: </span>
+              <img src="https://images.unsplash.com/photo-1760895535234-2c39c57cf187?auto=format&amp;fit=crop&amp;w=600&amp;h=750&amp;q=75" srcset="https://images.unsplash.com/photo-1760895535234-2c39c57cf187?auto=format&amp;fit=crop&amp;w=600&amp;h=750&amp;q=75 600w, https://images.unsplash.com/photo-1760895535234-2c39c57cf187?auto=format&amp;fit=crop&amp;w=900&amp;h=1125&amp;q=75 900w" sizes="(min-width: 1024px) 410px, 46vw" width="600" height="750" alt="Produtos de cuidado sobre prateleira clara com galhos floridos" loading="lazy" decoding="async">
+              <span class="gallery__zoom" aria-hidden="true"><i class="ph-light ph-plus"></i></span>
+            </button>
+          </li>
+          <li class="gallery__item" data-cat="noivas" data-reveal>
+            <button class="gallery__btn" type="button" data-full="https://images.unsplash.com/photo-1581674210501-c760093514e8?auto=format&amp;fit=max&amp;w=1600&amp;q=80">
+              <span class="sr-only">Ampliar imagem: </span>
+              <img src="https://images.unsplash.com/photo-1581674210501-c760093514e8?auto=format&amp;fit=crop&amp;w=900&amp;h=600&amp;q=75" srcset="https://images.unsplash.com/photo-1581674210501-c760093514e8?auto=format&amp;fit=crop&amp;w=900&amp;h=600&amp;q=75 900w, https://images.unsplash.com/photo-1581674210501-c760093514e8?auto=format&amp;fit=crop&amp;w=1350&amp;h=900&amp;q=75 1350w" sizes="(min-width: 1024px) 410px, 46vw" width="900" height="600" alt="Penteado de noiva com grampos de cristal sendo finalizado" loading="lazy" decoding="async">
+              <span class="gallery__zoom" aria-hidden="true"><i class="ph-light ph-plus"></i></span>
+            </button>
+          </li>
+          <li class="gallery__item" data-cat="espaco" data-reveal>
+            <button class="gallery__btn" type="button" data-full="https://images.unsplash.com/photo-1676536162793-faa565d976d4?auto=format&amp;fit=max&amp;w=1600&amp;q=80">
+              <span class="sr-only">Ampliar imagem: </span>
+              <img src="https://images.unsplash.com/photo-1676536162793-faa565d976d4?auto=format&amp;fit=crop&amp;w=600&amp;h=900&amp;q=75" srcset="https://images.unsplash.com/photo-1676536162793-faa565d976d4?auto=format&amp;fit=crop&amp;w=600&amp;h=900&amp;q=75 600w, https://images.unsplash.com/photo-1676536162793-faa565d976d4?auto=format&amp;fit=crop&amp;w=900&amp;h=1350&amp;q=75 900w" sizes="(min-width: 1024px) 410px, 46vw" width="600" height="900" alt="Nicho em arco iluminado entre plantas" loading="lazy" decoding="async">
+              <span class="gallery__zoom" aria-hidden="true"><i class="ph-light ph-plus"></i></span>
+            </button>
+          </li>
+          <li class="gallery__item" data-cat="maquiagem" data-reveal>
+            <button class="gallery__btn" type="button" data-full="https://images.unsplash.com/photo-1547887538-047f814bfb64?auto=format&amp;fit=max&amp;w=1600&amp;q=80">
+              <span class="sr-only">Ampliar imagem: </span>
+              <img src="https://images.unsplash.com/photo-1547887538-047f814bfb64?auto=format&amp;fit=crop&amp;w=600&amp;h=750&amp;q=75" srcset="https://images.unsplash.com/photo-1547887538-047f814bfb64?auto=format&amp;fit=crop&amp;w=600&amp;h=750&amp;q=75 600w, https://images.unsplash.com/photo-1547887538-047f814bfb64?auto=format&amp;fit=crop&amp;w=900&amp;h=1125&amp;q=75 900w" sizes="(min-width: 1024px) 410px, 46vw" width="600" height="750" alt="Pó iluminador dourado com pequenas flores brancas" loading="lazy" decoding="async">
+              <span class="gallery__zoom" aria-hidden="true"><i class="ph-light ph-plus"></i></span>
+            </button>
+          </li>
+          <li class="gallery__item" data-cat="cabelo" data-reveal>
+            <button class="gallery__btn" type="button" data-full="https://images.unsplash.com/photo-1560869713-bf165a9cfac1?auto=format&amp;fit=max&amp;w=1600&amp;q=80">
+              <span class="sr-only">Ampliar imagem: </span>
+              <img src="https://images.unsplash.com/photo-1560869713-bf165a9cfac1?auto=format&amp;fit=crop&amp;w=600&amp;h=900&amp;q=75" srcset="https://images.unsplash.com/photo-1560869713-bf165a9cfac1?auto=format&amp;fit=crop&amp;w=600&amp;h=900&amp;q=75 600w, https://images.unsplash.com/photo-1560869713-bf165a9cfac1?auto=format&amp;fit=crop&amp;w=900&amp;h=1350&amp;q=75 900w" sizes="(min-width: 1024px) 410px, 46vw" width="600" height="900" alt="Finalização com modelador de cachos em cabelo castanho" loading="lazy" decoding="async">
+              <span class="gallery__zoom" aria-hidden="true"><i class="ph-light ph-plus"></i></span>
+            </button>
+          </li>
+          <li class="gallery__item" data-cat="maquiagem" data-reveal>
+            <button class="gallery__btn" type="button" data-full="https://images.unsplash.com/photo-1656097400513-34d34a3b0a28?auto=format&amp;fit=max&amp;w=1600&amp;q=80">
+              <span class="sr-only">Ampliar imagem: </span>
+              <img src="https://images.unsplash.com/photo-1656097400513-34d34a3b0a28?auto=format&amp;fit=crop&amp;w=600&amp;h=750&amp;q=75" srcset="https://images.unsplash.com/photo-1656097400513-34d34a3b0a28?auto=format&amp;fit=crop&amp;w=600&amp;h=750&amp;q=75 600w, https://images.unsplash.com/photo-1656097400513-34d34a3b0a28?auto=format&amp;fit=crop&amp;w=900&amp;h=1125&amp;q=75 900w" sizes="(min-width: 1024px) 410px, 46vw" width="600" height="750" alt="Maquiagem em tons de cobre e pêssego com pele iluminada" loading="lazy" decoding="async">
+              <span class="gallery__zoom" aria-hidden="true"><i class="ph-light ph-plus"></i></span>
+            </button>
+          </li>
+          <li class="gallery__item" data-cat="cabelo" data-reveal>
+            <button class="gallery__btn" type="button" data-full="https://images.unsplash.com/photo-1554519934-e32b1629d9ee?auto=format&amp;fit=max&amp;w=1600&amp;q=80">
+              <span class="sr-only">Ampliar imagem: </span>
+              <img src="https://images.unsplash.com/photo-1554519934-e32b1629d9ee?auto=format&amp;fit=crop&amp;w=600&amp;h=750&amp;q=75" srcset="https://images.unsplash.com/photo-1554519934-e32b1629d9ee?auto=format&amp;fit=crop&amp;w=600&amp;h=750&amp;q=75 600w, https://images.unsplash.com/photo-1554519934-e32b1629d9ee?auto=format&amp;fit=crop&amp;w=900&amp;h=1125&amp;q=75 900w" sizes="(min-width: 1024px) 410px, 46vw" width="600" height="750" alt="Mechas loiras iluminadas, vistas de costas" loading="lazy" decoding="async">
+              <span class="gallery__zoom" aria-hidden="true"><i class="ph-light ph-plus"></i></span>
+            </button>
+          </li>
+          <li class="gallery__item" data-cat="espaco" data-reveal>
+            <button class="gallery__btn" type="button" data-full="https://images.unsplash.com/photo-1695527081827-fdbc4e77be9b?auto=format&amp;fit=max&amp;w=1600&amp;q=80">
+              <span class="sr-only">Ampliar imagem: </span>
+              <img src="https://images.unsplash.com/photo-1695527081827-fdbc4e77be9b?auto=format&amp;fit=crop&amp;w=600&amp;h=750&amp;q=75" srcset="https://images.unsplash.com/photo-1695527081827-fdbc4e77be9b?auto=format&amp;fit=crop&amp;w=600&amp;h=750&amp;q=75 600w, https://images.unsplash.com/photo-1695527081827-fdbc4e77be9b?auto=format&amp;fit=crop&amp;w=900&amp;h=1125&amp;q=75 900w" sizes="(min-width: 1024px) 410px, 46vw" width="600" height="750" alt="Lavatório com plantas e pufes de fibra natural" loading="lazy" decoding="async">
+              <span class="gallery__zoom" aria-hidden="true"><i class="ph-light ph-plus"></i></span>
+            </button>
+          </li>
+          <li class="gallery__item" data-cat="noivas" data-reveal>
+            <button class="gallery__btn" type="button" data-full="https://images.unsplash.com/photo-1549236177-77e8271c34b6?auto=format&amp;fit=max&amp;w=1600&amp;q=80">
+              <span class="sr-only">Ampliar imagem: </span>
+              <img src="https://images.unsplash.com/photo-1549236177-77e8271c34b6?auto=format&amp;fit=crop&amp;w=600&amp;h=750&amp;q=75" srcset="https://images.unsplash.com/photo-1549236177-77e8271c34b6?auto=format&amp;fit=crop&amp;w=600&amp;h=750&amp;q=75 600w, https://images.unsplash.com/photo-1549236177-77e8271c34b6?auto=format&amp;fit=crop&amp;w=900&amp;h=1125&amp;q=75 900w" sizes="(min-width: 1024px) 410px, 46vw" width="600" height="750" alt="Penteado semipreso com ondas e tiara de flores" loading="lazy" decoding="async">
+              <span class="gallery__zoom" aria-hidden="true"><i class="ph-light ph-plus"></i></span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         7. DEPOIMENTOS
+         CONTEÚDO ILUSTRATIVO: textos de exemplo, identificados na página.
+         Substituir por avaliações reais, com autorização das clientes.
+         ================================================================== -->
+    <section class="section depoimentos" id="depoimentos" aria-labelledby="depo-title">
+      <div class="container depoimentos__inner">
+        <p class="badge" data-reveal><i class="ph-light ph-info" aria-hidden="true"></i> Depoimentos ilustrativos</p>
+        <h2 class="h2" id="depo-title" data-reveal style="--d:1">Quem vive a <em>experiência</em></h2>
+
+        <div class="quotes" data-quotes role="region" aria-roledescription="carrossel" aria-label="Depoimentos" data-reveal style="--d:2">
+          <div class="quotes__mark" aria-hidden="true">
+            <svg class="ramo ramo--espelho" viewBox="0 0 168 64" focusable="false"><use href="#ramo"/></svg>
+            <span>&ldquo;</span>
+            <svg class="ramo" viewBox="0 0 168 64" focusable="false"><use href="#ramo"/></svg>
+          </div>
+          <div class="quotes__track" data-quotes-track>
+            <figure class="quote is-active" role="group" aria-roledescription="depoimento" aria-label="1 de 4">
+              <blockquote><p>Fui recebida com uma atenção rara. Saí de lá me sentindo eu mesma, só que mais leve.</p></blockquote>
+              <figcaption>Cliente de cabelo</figcaption>
+            </figure>
+            <figure class="quote" role="group" aria-roledescription="depoimento" aria-label="2 de 4" aria-hidden="true">
+              <blockquote><p>O Dia da Noiva foi a parte mais tranquila do meu casamento. Cada detalhe foi pensado.</p></blockquote>
+              <figcaption>Cliente do Dia da Noiva</figcaption>
+            </figure>
+            <figure class="quote" role="group" aria-roledescription="depoimento" aria-label="3 de 4" aria-hidden="true">
+              <blockquote><p>Um ambiente lindo, silencioso e cheio de verde. Virou o meu momento de pausa na semana.</p></blockquote>
+              <figcaption>Cliente de bem-estar</figcaption>
+            </figure>
+            <figure class="quote" role="group" aria-roledescription="depoimento" aria-label="4 de 4" aria-hidden="true">
+              <blockquote><p>A maquiagem ficou leve e luminosa, exatamente como eu imaginava.</p></blockquote>
+              <figcaption>Cliente de maquiagem</figcaption>
+            </figure>
+          </div>
+          <p class="sr-only" aria-live="polite" data-quote-status></p>
+
+          <div class="quotes__controls">
+            <button class="icon-btn" type="button" data-quote-prev aria-label="Depoimento anterior"><i class="ph-light ph-arrow-left" aria-hidden="true"></i></button>
+            <div class="quotes__dots" role="group" aria-label="Escolher depoimento">
+              <button class="quotes__dot" type="button" data-quote-dot aria-label="Depoimento 1" aria-current="true"></button>
+              <button class="quotes__dot" type="button" data-quote-dot aria-label="Depoimento 2" aria-current="false"></button>
+              <button class="quotes__dot" type="button" data-quote-dot aria-label="Depoimento 3" aria-current="false"></button>
+              <button class="quotes__dot" type="button" data-quote-dot aria-label="Depoimento 4" aria-current="false"></button>
+            </div>
+            <button class="icon-btn" type="button" data-quote-next aria-label="Próximo depoimento"><i class="ph-light ph-arrow-right" aria-hidden="true"></i></button>
+          </div>
+          <p class="quotes__note">Textos de exemplo. Serão substituídos por avaliações reais, publicadas com autorização das clientes.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         8. AGENDAMENTO
+         PROTÓTIPO: profissionais e horários simulados no navegador. Sem backend.
+         Na versão final, `slotsFor` (script) consulta a disponibilidade no
+         servidor (Google Agenda ou API própria) e o envio revalida o horário
+         antes de criar a solicitação. Credenciais ficam só no servidor.
+         ================================================================== -->
+    <section class="section agenda on-dark" id="agendamento" aria-labelledby="agenda-title">
+      <div class="container agenda__grid">
+        <div class="agenda__intro">
+          <p class="badge" data-reveal><i class="ph-light ph-flask" aria-hidden="true"></i> Prévia: horários fictícios</p>
+          <h2 class="h2" id="agenda-title" data-reveal style="--d:1">Agende seu horário</h2>
+          <p class="lead" data-reveal style="--d:2">Escolha o serviço, a data e o horário. A equipe do JV&nbsp;Studium confirma cada solicitação com você.</p>
+          <p class="agenda__alt" data-reveal style="--d:3">Prefere conversar? <a class="link" href="#" data-wa data-wa-msg="Olá! Gostaria de agendar um horário no JV Studium.">Fale pelo WhatsApp <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a></p>
+        </div>
+
+        <div class="booking on-light" data-booking data-reveal style="--d:1">
+          <svg class="ramo booking__ramo" viewBox="0 0 168 64" aria-hidden="true" focusable="false"><use href="#ramo"/></svg>
+
+          <ol class="stepper" role="list" aria-label="Etapas do agendamento" data-stepper>
+            <li class="stepper__item is-active" data-step-dot="1" aria-current="step"><span class="stepper__num">1</span><span class="stepper__label">Serviço</span></li>
+            <li class="stepper__item" data-step-dot="2"><span class="stepper__num">2</span><span class="stepper__label">Profissional</span></li>
+            <li class="stepper__item" data-step-dot="3"><span class="stepper__num">3</span><span class="stepper__label">Data e horário</span></li>
+            <li class="stepper__item" data-step-dot="4"><span class="stepper__num">4</span><span class="stepper__label">Seus dados</span></li>
+          </ol>
+
+          <form class="booking__form" data-booking-form novalidate>
+            <!-- Etapa 1: serviço -->
+            <fieldset class="step" data-step="1" aria-describedby="err-servico">
+              <legend class="step__title" tabindex="-1">Qual serviço você deseja?</legend>
+              <div class="choices choices--services">
+                <label class="choice">
+                  <input type="radio" name="servico" value="cabelo">
+                  <span class="choice__icon" aria-hidden="true"><i class="ph-light ph-scissors"></i></span>
+                  <span><span class="choice__name">Cabelo</span><span class="choice__desc">Cuidado completo com os fios</span></span>
+                  <span class="choice__check" aria-hidden="true"><i class="ph ph-check"></i></span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="servico" value="maquiagem">
+                  <span class="choice__icon" aria-hidden="true"><i class="ph-light ph-paint-brush"></i></span>
+                  <span><span class="choice__name">Maquiagem</span><span class="choice__desc">Para eventos e ocasiões especiais</span></span>
+                  <span class="choice__check" aria-hidden="true"><i class="ph ph-check"></i></span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="servico" value="estetica">
+                  <span class="choice__icon" aria-hidden="true"><i class="ph-light ph-drop"></i></span>
+                  <span><span class="choice__name">Estética</span><span class="choice__desc">Cuidados com a pele do rosto e do corpo</span></span>
+                  <span class="choice__check" aria-hidden="true"><i class="ph ph-check"></i></span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="servico" value="bemestar">
+                  <span class="choice__icon" aria-hidden="true"><i class="ph-light ph-flower-lotus"></i></span>
+                  <span><span class="choice__name">Saúde e bem-estar</span><span class="choice__desc">Relaxamento e equilíbrio</span></span>
+                  <span class="choice__check" aria-hidden="true"><i class="ph ph-check"></i></span>
+                </label>
+                <label class="choice choice--feature">
+                  <input type="radio" name="servico" value="noiva">
+                  <span class="choice__icon" aria-hidden="true"><i class="ph-light ph-heart"></i></span>
+                  <span><span class="choice__name">Dia da Noiva</span><span class="choice__desc">Preparação completa para o grande dia</span></span>
+                  <span class="choice__check" aria-hidden="true"><i class="ph ph-check"></i></span>
+                </label>
+              </div>
+              <p class="field-error" id="err-servico" data-error-for="servico" aria-live="polite"></p>
+              <div class="step__actions">
+                <button class="btn" type="button" data-next>Continuar <span class="btn__icon" aria-hidden="true"><i class="ph ph-arrow-right"></i></span></button>
+              </div>
+            </fieldset>
+
+            <!-- Etapa 2: profissional (EXEMPLOS: trocar pela equipe real, com nome e foto) -->
+            <fieldset class="step" data-step="2" hidden>
+              <legend class="step__title" tabindex="-1">Tem preferência de profissional?</legend>
+              <div class="choices">
+                <label class="choice">
+                  <input type="radio" name="profissional" value="sem-preferencia" checked>
+                  <span class="choice__icon" aria-hidden="true"><i class="ph-light ph-users-three"></i></span>
+                  <span><span class="choice__name">Sem preferência</span><span class="choice__desc">A equipe indica quem vai atender você</span></span>
+                  <span class="choice__check" aria-hidden="true"><i class="ph ph-check"></i></span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="profissional" value="profissional-a">
+                  <span class="choice__avatar" aria-hidden="true">A</span>
+                  <span><span class="choice__name">Profissional A <span class="choice__tag">Exemplo</span></span><span class="choice__desc">Nome e especialidade a definir</span></span>
+                  <span class="choice__check" aria-hidden="true"><i class="ph ph-check"></i></span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="profissional" value="profissional-b">
+                  <span class="choice__avatar" aria-hidden="true">B</span>
+                  <span><span class="choice__name">Profissional B <span class="choice__tag">Exemplo</span></span><span class="choice__desc">Nome e especialidade a definir</span></span>
+                  <span class="choice__check" aria-hidden="true"><i class="ph ph-check"></i></span>
+                </label>
+              </div>
+              <div class="step__actions">
+                <button class="btn-text" type="button" data-back>Voltar</button>
+                <button class="btn" type="button" data-next>Continuar <span class="btn__icon" aria-hidden="true"><i class="ph ph-arrow-right"></i></span></button>
+              </div>
+            </fieldset>
+
+            <!-- Etapa 3: data e horário (dados de demonstração) -->
+            <fieldset class="step" data-step="3" aria-describedby="err-horario" hidden>
+              <legend class="step__title" tabindex="-1">Escolha a data e o horário</legend>
+              <div class="schedule">
+                <div class="cal">
+                  <div class="cal__head">
+                    <p class="cal__month" data-cal-month aria-live="polite">Calendário</p>
+                    <div class="cal__nav">
+                      <button class="icon-btn icon-btn--sm" type="button" data-cal-prev aria-label="Mês anterior"><i class="ph ph-caret-left" aria-hidden="true"></i></button>
+                      <button class="icon-btn icon-btn--sm" type="button" data-cal-next aria-label="Próximo mês"><i class="ph ph-caret-right" aria-hidden="true"></i></button>
+                    </div>
+                  </div>
+                  <div class="cal__weekdays" aria-hidden="true"><span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span></div>
+                  <div class="cal__grid" data-cal-grid role="group" aria-label="Dias do mês"></div>
+                  <p class="cal__legend">Dias com horários livres</p>
+                </div>
+
+                <div class="slots-panel" data-slots-panel>
+                  <p class="slots-panel__title" data-slots-title>Horários</p>
+                  <p class="slots-panel__hint" data-slots-hint></p>
+                  <div class="slots" data-slots role="group" aria-label="Horários disponíveis">
+                    <p class="slots__empty"><i class="ph-light ph-calendar-blank" aria-hidden="true"></i>Escolha uma data no calendário para ver os horários disponíveis.</p>
+                  </div>
+                  <p class="slots__note"><i class="ph-light ph-info" aria-hidden="true"></i>Horários fictícios, apenas para demonstração.</p>
+                </div>
+              </div>
+              <p class="field-error" id="err-horario" data-error-for="horario" aria-live="polite"></p>
+              <div class="step__actions">
+                <button class="btn-text" type="button" data-back>Voltar</button>
+                <button class="btn" type="button" data-next>Continuar <span class="btn__icon" aria-hidden="true"><i class="ph ph-arrow-right"></i></span></button>
+              </div>
+            </fieldset>
+
+            <!-- Etapa 4: dados de contato -->
+            <fieldset class="step" data-step="4" hidden>
+              <legend class="step__title" tabindex="-1">Seus dados</legend>
+              <dl class="summary">
+                <div><dt>Serviço</dt><dd data-sum="servico"></dd><button class="summary__edit" type="button" data-goto="1">Alterar</button></div>
+                <div><dt>Profissional</dt><dd data-sum="profissional"></dd><button class="summary__edit" type="button" data-goto="2">Alterar</button></div>
+                <div><dt>Data e horário</dt><dd data-sum="quando"></dd><button class="summary__edit" type="button" data-goto="3">Alterar</button></div>
+              </dl>
+              <div class="fields">
+                <div class="field field--full">
+                  <label for="bk-nome">Nome completo</label>
+                  <input id="bk-nome" name="nome" type="text" autocomplete="name" required aria-describedby="err-bk-nome">
+                  <p class="field-error" id="err-bk-nome" data-error-for="bk-nome"></p>
+                </div>
+                <div class="field">
+                  <label for="bk-whatsapp">WhatsApp</label>
+                  <input id="bk-whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="(19) 90000-0000" required data-phone aria-describedby="err-bk-whatsapp">
+                  <p class="field-error" id="err-bk-whatsapp" data-error-for="bk-whatsapp"></p>
+                </div>
+                <div class="field">
+                  <label for="bk-email">E-mail <span class="field__opt">(opcional)</span></label>
+                  <input id="bk-email" name="email" type="email" autocomplete="email" aria-describedby="err-bk-email">
+                  <p class="field-error" id="err-bk-email" data-error-for="bk-email"></p>
+                </div>
+                <div class="field field--full">
+                  <label for="bk-obs">Observações <span class="field__opt">(opcional)</span></label>
+                  <textarea id="bk-obs" name="observacoes" rows="3" maxlength="500" placeholder="Conte o que você deseja ou algum detalhe importante."></textarea>
+                </div>
+                <div class="field field--full">
+                  <label class="check" for="bk-consent">
+                    <input id="bk-consent" name="consent" type="checkbox" required aria-describedby="err-bk-consent">
+                    <span>Autorizo o JV&nbsp;Studium a entrar em contato pelo WhatsApp sobre esta solicitação, conforme a <button class="inline-link" type="button" data-privacy-open>política de privacidade</button>.</span>
+                  </label>
+                  <p class="field-error" id="err-bk-consent" data-error-for="bk-consent"></p>
+                </div>
+              </div>
+              <div class="step__actions">
+                <button class="btn-text" type="button" data-back>Voltar</button>
+                <button class="btn" type="submit" data-submit><span data-submit-label>Enviar solicitação</span> <span class="btn__icon" aria-hidden="true"><i class="ph ph-paper-plane-tilt" data-submit-icon></i></span></button>
+              </div>
+            </fieldset>
+          </form>
+
+          <!-- Resultado: deixa claro que nada foi reservado (protótipo) -->
+          <div class="result" data-result tabindex="-1" hidden>
+            <span class="result__icon" aria-hidden="true"><i class="ph-light ph-check-circle"></i></span>
+            <p class="badge">Protótipo</p>
+            <h3 class="result__title">Solicitação simulada</h3>
+            <p class="result__text">Nenhum horário foi reservado. Na versão final, a equipe do JV&nbsp;Studium recebe este pedido e confirma o atendimento com você.</p>
+            <dl class="summary" data-result-summary></dl>
+            <div class="result__actions">
+              <a class="btn" href="#" target="_blank" rel="noopener" data-result-wa>Enviar pelo WhatsApp <span class="btn__icon" aria-hidden="true"><i class="ph ph-whatsapp-logo"></i></span></a>
+              <button class="btn-text" type="button" data-restart>Nova simulação</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         9. CONTATO
+         PLACEHOLDERS: endereço, telefone/WhatsApp, Instagram e horários.
+         ================================================================== -->
+    <section class="section contato" id="contato" aria-labelledby="contato-title">
+      <div class="container contato__grid">
+        <div class="contato__info">
+          <h2 class="h2" id="contato-title" data-reveal><em>Visite</em> o JV&nbsp;Studium</h2>
+          <p class="lead" data-reveal style="--d:1">Estamos em São João da Boa Vista. Fale com a nossa equipe ou venha conhecer o espaço.</p>
+          <ul class="contact-list" role="list">
+            <li data-reveal>
+              <i class="ph-light ph-map-pin" aria-hidden="true"></i>
+              <div>
+                <span class="contact-list__label">Endereço</span>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=S%C3%A3o+Jo%C3%A3o+da+Boa+Vista%2C+SP" target="_blank" rel="noopener" data-maps>Rua Exemplo, 000, Centro<br>São João da Boa Vista, SP</a>
+              </div>
+            </li>
+            <li data-reveal style="--d:1">
+              <i class="ph-light ph-phone" aria-hidden="true"></i>
+              <div>
+                <span class="contact-list__label">Telefone e WhatsApp</span>
+                <a href="tel:+5519900000000" data-tel>(19) 90000-0000</a>
+              </div>
+            </li>
+            <li data-reveal style="--d:2">
+              <i class="ph-light ph-instagram-logo" aria-hidden="true"></i>
+              <div>
+                <span class="contact-list__label">Instagram</span>
+                <a href="https://www.instagram.com/jvstudium/" target="_blank" rel="noopener" data-instagram>@jvstudium</a>
+              </div>
+            </li>
+            <li data-reveal style="--d:3">
+              <i class="ph-light ph-clock" aria-hidden="true"></i>
+              <div>
+                <span class="contact-list__label">Horário de atendimento</span>
+                <p>Terça a sexta, 9h às 19h<br>Sábado, 8h às 16h</p>
+              </div>
+            </li>
+          </ul>
+          <div class="contato__actions" data-reveal>
+            <a class="btn" href="#" data-wa data-wa-msg="Olá! Vim pelo site do JV Studium e gostaria de mais informações.">Conversar no WhatsApp <span class="btn__icon" aria-hidden="true"><i class="ph ph-whatsapp-logo"></i></span></a>
+            <a class="link" href="https://www.google.com/maps/dir/?api=1&amp;destination=S%C3%A3o+Jo%C3%A3o+da+Boa+Vista%2C+SP" target="_blank" rel="noopener" data-directions>Como chegar <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <div class="contato__map" data-reveal="clip">
+          <!-- PLACEHOLDER: o mapa mostra a cidade até o endereço real entrar em STUDIO.mapQuery -->
+          <iframe title="Mapa com a localização do JV Studium" src="https://www.google.com/maps?q=S%C3%A3o%20Jo%C3%A3o%20da%20Boa%20Vista%2C%20SP&amp;z=14&amp;hl=pt-BR&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" data-map></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================================================================
+       10. FOOTER
+       ================================================================== -->
+  <footer class="footer on-dark">
+    <div class="container">
+      <div class="footer__brand">
+        <svg class="ramo ramo--espelho" viewBox="0 0 168 64" aria-hidden="true" focusable="false"><use href="#ramo"/></svg>
+        <!-- PLACEHOLDER: logo provisório -->
+        <a class="brand brand--footer" href="#topo" aria-label="JV Studium, voltar ao início">
+          <span class="brand__mono" aria-hidden="true">JV</span>
+          <span class="brand__rule" aria-hidden="true"></span>
+          <span class="brand__name" aria-hidden="true">Studium</span>
+        </a>
+        <svg class="ramo" viewBox="0 0 168 64" aria-hidden="true" focusable="false"><use href="#ramo"/></svg>
+      </div>
+      <p class="footer__tagline">Beleza, estética e bem-estar em São João da Boa Vista.</p>
+
+      <nav aria-label="Rodapé">
+        <ul class="footer__nav" role="list">
+          <li><a href="#universo">O Studium</a></li>
+          <li><a href="#dia-da-noiva">Dia da Noiva</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#depoimentos">Depoimentos</a></li>
+          <li><a href="#agendamento">Agendamento</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer__social">
+        <a class="icon-btn" href="#" data-wa data-wa-msg="Olá! Vim pelo site do JV Studium e gostaria de mais informações." aria-label="WhatsApp do JV Studium"><i class="ph-light ph-whatsapp-logo" aria-hidden="true"></i></a>
+        <a class="icon-btn" href="https://www.instagram.com/jvstudium/" target="_blank" rel="noopener" data-instagram aria-label="Instagram do JV Studium"><i class="ph-light ph-instagram-logo" aria-hidden="true"></i></a>
+        <a class="icon-btn" href="https://www.google.com/maps/search/?api=1&amp;query=S%C3%A3o+Jo%C3%A3o+da+Boa+Vista%2C+SP" target="_blank" rel="noopener" data-maps aria-label="Localização do JV Studium no mapa"><i class="ph-light ph-map-pin" aria-hidden="true"></i></a>
+      </div>
+      <p class="footer__address">Rua Exemplo, 000, Centro · São João da Boa Vista, SP</p>
+
+      <div class="footer__bottom">
+        <p>© <span data-year>2026</span> JV&nbsp;Studium. Todos os direitos reservados.</p>
+        <button class="inline-link" type="button" data-privacy-open>Política de privacidade</button>
+        <p>Protótipo de apresentação: imagens, textos e horários são ilustrativos.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox da galeria -->
+  <dialog class="lightbox" data-lightbox aria-label="Imagem ampliada">
+    <figure class="lightbox__figure">
+      <img data-lb-img src="data:," alt="">
+      <figcaption data-lb-caption></figcaption>
+    </figure>
+    <button class="icon-btn lightbox__nav lightbox__nav--prev" type="button" data-lb-prev aria-label="Imagem anterior"><i class="ph-light ph-arrow-left" aria-hidden="true"></i></button>
+    <button class="icon-btn lightbox__nav lightbox__nav--next" type="button" data-lb-next aria-label="Próxima imagem"><i class="ph-light ph-arrow-right" aria-hidden="true"></i></button>
+    <button class="icon-btn lightbox__close" type="button" data-lb-close aria-label="Fechar"><i class="ph-light ph-x" aria-hidden="true"></i></button>
+  </dialog>
+
+  <!-- Política de privacidade (TEXTO PROVISÓRIO: redigir a versão definitiva conforme a LGPD) -->
+  <dialog class="modal" data-privacy aria-labelledby="privacy-title">
+    <div class="modal__inner">
+      <h2 class="modal__title" id="privacy-title">Política de privacidade</h2>
+      <div class="modal__body text">
+        <p><strong>Texto provisório.</strong> A política definitiva será redigida com o JV&nbsp;Studium, em conformidade com a Lei Geral de Proteção de Dados (LGPD).</p>
+        <p>Neste protótipo, nada do que é digitado nos formulários é enviado ou armazenado: tudo acontece apenas no seu navegador.</p>
+        <p>Na versão final, os dados de agendamento (nome, WhatsApp, e-mail e observações) serão usados somente para confirmar e organizar o seu atendimento.</p>
+      </div>
+      <form class="modal__actions" method="dialog"><button class="btn btn--plain" type="submit">Entendi</button></form>
+    </div>
+    <button class="icon-btn modal__close" type="button" data-modal-close aria-label="Fechar"><i class="ph-light ph-x" aria-hidden="true"></i></button>
+  </dialog>
+
+  <script>
+    (() => {
+      // =====================================================================
+      // DADOS DO JV STUDIUM · PLACEHOLDERS
+      // Confirmar com o estabelecimento e substituir os mesmos textos no HTML.
+      // =====================================================================
+      const STUDIO = {
+        name: 'JV Studium',
+        whatsapp: '5519900000000',             // PLACEHOLDER: DDI + DDD + número, só dígitos
+        instagram: 'jvstudium',                // CONFIRMAR: perfil oficial
+        mapQuery: 'São João da Boa Vista, SP', // trocar pelo endereço completo para o mapa e o "Como chegar"
+      };
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const desktop = window.matchMedia('(min-width: 1024px)');
+      const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+      const $ = (sel, root = document) => root.querySelector(sel);
+      const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
+
+      // ---------- Links externos a partir de STUDIO ----------
+      const waLink = (msg) => `https://wa.me/${STUDIO.whatsapp}${msg ? `?text=${encodeURIComponent(msg)}` : ''}`;
+      $$('[data-wa]').forEach((a) => {
+        a.href = waLink(a.dataset.waMsg);
+        a.target = '_blank';
+        a.rel = 'noopener';
+      });
+      const place = encodeURIComponent(STUDIO.mapQuery);
+      $$('[data-maps]').forEach((a) => { a.href = `https://www.google.com/maps/search/?api=1&query=${place}`; });
+      $$('[data-directions]').forEach((a) => { a.href = `https://www.google.com/maps/dir/?api=1&destination=${place}`; });
+      $$('[data-instagram]').forEach((a) => { a.href = `https://www.instagram.com/${STUDIO.instagram}/`; });
+      const map = $('[data-map]');
+      const mapSrc = `https://www.google.com/maps?q=${place}&z=14&hl=pt-BR&output=embed`;
+      if (map && map.getAttribute('src') !== mapSrc) map.src = mapSrc;
+      const year = $('[data-year]');
+      if (year) year.textContent = new Date().getFullYear();
+
+      // ---------- Header: fundo de vidro depois do topo ----------
+      const header = $('[data-header]');
+      const sentinel = document.createElement('div');
+      sentinel.setAttribute('aria-hidden', 'true');
+      sentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:24px;pointer-events:none';
+      document.body.prepend(sentinel);
+      new IntersectionObserver(([entry]) => header.classList.toggle('is-scrolled', !entry.isIntersecting)).observe(sentinel);
+
+      // ---------- Menu móvel ----------
+      const toggle = $('[data-menu-toggle]');
+      const menu = $('[data-menu]');
+      const menuLabel = $('[data-menu-label]');
+      const page = [$('main'), $('footer')];
+      let menuTimer;
+      const isMenuOpen = () => toggle.getAttribute('aria-expanded') === 'true';
+      const setMenu = (open) => {
+        clearTimeout(menuTimer);
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+        menuLabel.textContent = open ? 'Fechar' : 'Menu';
+        document.documentElement.classList.toggle('menu-open', open);
+        page.forEach((el) => { el.inert = open; });
+        if (open) {
+          menu.hidden = false;
+          requestAnimationFrame(() => requestAnimationFrame(() => menu.classList.add('is-open')));
+          menuTimer = setTimeout(() => menu.querySelector('a').focus({ preventScroll: true }), reduceMotion ? 0 : 180);
+        } else {
+          menu.classList.remove('is-open');
+          menuTimer = setTimeout(() => { menu.hidden = true; }, reduceMotion ? 0 : 420);
+        }
+      };
+      toggle.addEventListener('click', () => setMenu(!isMenuOpen()));
+      menu.addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false); });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isMenuOpen()) { setMenu(false); toggle.focus(); }
+      });
+      window.matchMedia('(min-width: 1100px)').addEventListener('change', (e) => { if (e.matches && isMenuOpen()) setMenu(false); });
+
+      // ---------- Link da seção atual na navegação ----------
+      const navLinks = $$('.nav-link');
+      const spyTargets = ['topo', ...navLinks.map((a) => a.hash.slice(1))].map((id) => document.getElementById(id)).filter(Boolean);
+      const spy = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          navLinks.forEach((a) => {
+            if (a.hash === `#${entry.target.id}`) a.setAttribute('aria-current', 'true');
+            else a.removeAttribute('aria-current');
+          });
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      spyTargets.forEach((section) => spy.observe(section));
+
+      // ---------- Revelação ao rolar (uma vez por elemento) ----------
+      // O clip-path inicial zera a área visível do próprio elemento, e o Chrome
+      // considera isso no IntersectionObserver. Por isso as imagens com
+      // data-reveal="clip" são reveladas quando o elemento pai entra na tela.
+      const revealEls = $$('[data-reveal]');
+      if ('IntersectionObserver' in window) {
+        const watched = new Map();
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            watched.get(entry.target).forEach((el) => el.classList.add('is-visible'));
+            io.unobserve(entry.target);
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+        revealEls.forEach((el) => {
+          const target = el.dataset.reveal === 'clip' ? el.parentElement : el;
+          if (!watched.has(target)) watched.set(target, []);
+          watched.get(target).push(el);
+          io.observe(target);
+        });
+      } else {
+        revealEls.forEach((el) => el.classList.add('is-visible'));
+      }
+
+      // ---------- Serviços: lista + painel (desktop) / acordeão (mobile) ----------
+      const services = $('[data-services]');
+      if (services) {
+        const items = $$('.svc__item', services);
+        const tabs = items.map((item) => $('.svc__tab', item));
+        const setActive = (index, fromClick = false) => {
+          items.forEach((item, i) => {
+            let on = i === index;
+            // No acordeão, tocar no item aberto fecha o item
+            if (fromClick && on && !desktop.matches && item.classList.contains('is-active')) on = false;
+            item.classList.toggle('is-active', on);
+            tabs[i].setAttribute('aria-expanded', String(on));
+          });
+        };
+        tabs.forEach((tab, i) => {
+          let hoverTimer;
+          tab.addEventListener('click', () => setActive(i, true));
+          // Desktop com mouse: passar o cursor também troca o painel (com intenção de 140ms)
+          tab.addEventListener('pointerenter', () => {
+            if (!desktop.matches || !finePointer.matches) return;
+            hoverTimer = setTimeout(() => setActive(i), 140);
+          });
+          tab.addEventListener('pointerleave', () => clearTimeout(hoverTimer));
+          tab.addEventListener('keydown', (e) => {
+            const keys = { ArrowDown: 1, ArrowUp: -1, Home: 'first', End: 'last' };
+            if (!(e.key in keys)) return;
+            e.preventDefault();
+            const step = keys[e.key];
+            const next = step === 'first' ? 0 : step === 'last' ? tabs.length - 1 : (i + step + tabs.length) % tabs.length;
+            tabs[next].focus();
+            if (desktop.matches) setActive(next);
+          });
+        });
+        desktop.addEventListener('change', (e) => {
+          if (e.matches && !items.some((item) => item.classList.contains('is-active'))) setActive(0);
+        });
+      }
+
+      // ---------- Galeria: filtros ----------
+      const galleryItems = $$('.gallery__item');
+      const galleryStatus = $('[data-gallery-status]');
+      const filterBtns = $$('[data-filter]');
+      galleryItems.forEach((item, i) => { item.style.viewTransitionName = `galeria-${i}`; });
+      const applyFilter = (cat) => {
+        let count = 0;
+        filterBtns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.filter === cat)));
+        galleryItems.forEach((item) => {
+          const show = cat === 'todos' || item.dataset.cat === cat;
+          item.hidden = !show;
+          if (show) { count++; item.classList.add('is-visible'); }
+        });
+        galleryStatus.textContent = `${count} ${count === 1 ? 'imagem' : 'imagens'} na galeria`;
+      };
+      filterBtns.forEach((btn) => btn.addEventListener('click', () => {
+        if (btn.getAttribute('aria-pressed') === 'true') return;
+        const run = () => applyFilter(btn.dataset.filter);
+        if (document.startViewTransition && !reduceMotion) document.startViewTransition(run);
+        else run();
+      }));
+
+      // ---------- Galeria: lightbox ----------
+      const lightbox = $('[data-lightbox]');
+      if (lightbox) {
+        const lbImg = $('[data-lb-img]', lightbox);
+        const lbCaption = $('[data-lb-caption]', lightbox);
+        let list = [];
+        let index = 0;
+        let trigger = null;
+        const show = (i) => {
+          index = (i + list.length) % list.length;
+          const btn = list[index];
+          const thumb = $('img', btn);
+          lbImg.classList.add('is-loading');
+          lbImg.onload = () => lbImg.classList.remove('is-loading');
+          lbImg.src = btn.dataset.full;
+          lbImg.alt = thumb.alt;
+          lbCaption.textContent = thumb.alt;
+        };
+        $$('.gallery__btn').forEach((btn) => btn.addEventListener('click', () => {
+          list = $$('.gallery__item:not([hidden]) .gallery__btn');
+          trigger = btn;
+          show(list.indexOf(btn));
+          lightbox.showModal();
+        }));
+        $('[data-lb-prev]', lightbox).addEventListener('click', () => show(index - 1));
+        $('[data-lb-next]', lightbox).addEventListener('click', () => show(index + 1));
+        $('[data-lb-close]', lightbox).addEventListener('click', () => lightbox.close());
+        lightbox.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowLeft') show(index - 1);
+          if (e.key === 'ArrowRight') show(index + 1);
+        });
+        lightbox.addEventListener('close', () => trigger?.focus({ preventScroll: true }));
+        // Deslizar no celular troca a foto; toque fora da foto fecha
+        let startX = null;
+        let swiped = false;
+        lightbox.addEventListener('pointerdown', (e) => { startX = e.clientX; swiped = false; });
+        lightbox.addEventListener('pointerup', (e) => {
+          if (startX === null) return;
+          const dx = e.clientX - startX;
+          startX = null;
+          if (Math.abs(dx) > 50) { swiped = true; show(index + (dx < 0 ? 1 : -1)); }
+        });
+        lightbox.addEventListener('click', (e) => {
+          if (!swiped && (e.target === lightbox || e.target.classList.contains('lightbox__figure'))) lightbox.close();
+        });
+      }
+
+      // ---------- Política de privacidade ----------
+      const privacy = $('[data-privacy]');
+      if (privacy) {
+        $$('[data-privacy-open]').forEach((btn) => btn.addEventListener('click', () => privacy.showModal()));
+        $('[data-modal-close]', privacy).addEventListener('click', () => privacy.close());
+        privacy.addEventListener('click', (e) => { if (e.target === privacy) privacy.close(); });
+      }
+
+      // ---------- Depoimentos (navegação manual, sem rotação automática) ----------
+      const quotes = $('[data-quotes]');
+      if (quotes) {
+        const slides = $$('.quote', quotes);
+        const dots = $$('[data-quote-dot]', quotes);
+        const status = $('[data-quote-status]', quotes);
+        const track = $('[data-quotes-track]', quotes);
+        let current = 0;
+        const go = (i) => {
+          current = (i + slides.length) % slides.length;
+          slides.forEach((slide, k) => {
+            slide.classList.toggle('is-active', k === current);
+            slide.setAttribute('aria-hidden', String(k !== current));
+          });
+          dots.forEach((dot, k) => dot.setAttribute('aria-current', String(k === current)));
+          status.textContent = `Depoimento ${current + 1} de ${slides.length}: ${$('p', slides[current]).textContent}`;
+        };
+        $('[data-quote-prev]', quotes).addEventListener('click', () => go(current - 1));
+        $('[data-quote-next]', quotes).addEventListener('click', () => go(current + 1));
+        dots.forEach((dot, k) => dot.addEventListener('click', () => go(k)));
+        let startX = null;
+        track.addEventListener('pointerdown', (e) => { startX = e.clientX; });
+        track.addEventListener('pointercancel', () => { startX = null; });
+        track.addEventListener('pointerup', (e) => {
+          if (startX === null) return;
+          const dx = e.clientX - startX;
+          startX = null;
+          if (Math.abs(dx) > 40) go(current + (dx < 0 ? 1 : -1));
+        });
+      }
+
+      // =====================================================================
+      // AGENDAMENTO (PRÉVIA: sem backend, dados simulados no navegador)
+      // Fluxo: serviço > profissional > data e horário > dados > resultado.
+      // =====================================================================
+      const booking = $('[data-booking]');
+      if (!booking) return;
+
+      const form = $('[data-booking-form]', booking);
+      const steps = $$('[data-step]', form);
+      const stepDots = $$('[data-step-dot]', booking);
+      const stepper = $('[data-stepper]', booking);
+      const result = $('[data-result]', booking);
+
+      const SERVICES = {
+        cabelo: 'Cabelo',
+        maquiagem: 'Maquiagem',
+        estetica: 'Estética',
+        bemestar: 'Saúde e bem-estar',
+        noiva: 'Dia da Noiva',
+      };
+      const PROS = {
+        'sem-preferencia': 'Sem preferência',
+        'profissional-a': 'Profissional A (exemplo)',
+        'profissional-b': 'Profissional B (exemplo)',
+      };
+      // Horário ilustrativo: terça a sexta 9h às 19h, sábado 8h às 16h (domingo e segunda fechado)
+      const WEEK = [9, 10, 11, 13, 14, 15, 16, 17, 18];
+      const HOURS = { 2: WEEK, 3: WEEK, 4: WEEK, 5: WEEK, 6: [8, 9, 10, 11, 12, 13, 14, 15] };
+      const BRIDE_HOURS = [7, 8, 9, 10]; // Dia da Noiva: horário de início da preparação
+
+      const MONTHS = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+      const WEEKDAYS = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
+      const pad = (n) => String(n).padStart(2, '0');
+      const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+      const dateKey = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+      const longDate = (d) => `${cap(WEEKDAYS[d.getDay()])}, ${d.getDate()} de ${MONTHS[d.getMonth()]}`;
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+      // Hash determinístico: a mesma combinação sempre mostra a mesma ocupação
+      const hash = (str) => {
+        let h = 2166136261;
+        for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+        return Math.abs(h);
+      };
+      const service = () => form.elements.servico.value;
+      const professional = () => form.elements.profissional.value;
+
+      // Na versão final, esta função vira uma chamada ao servidor (disponibilidade real)
+      const slotsFor = (date) => {
+        if (date <= today) return [];
+        const base = HOURS[date.getDay()];
+        if (!base) return [];
+        const hours = service() === 'noiva' ? BRIDE_HOURS : base;
+        const key = dateKey(date);
+        return hours.map((h) => ({ h, busy: hash(`${service()}|${professional()}|${key}|${h}`) % 100 < 42 }));
+      };
+
+      let stepIndex = 1;
+      let selectedDate = null;
+      let selectedHour = null;
+
+      // ---------- Mensagens de erro ----------
+      const setError = (key, message) => {
+        const slot = form.querySelector(`[data-error-for="${key}"]`);
+        if (slot) slot.innerHTML = message ? `<i class="ph ph-warning-circle" aria-hidden="true"></i>${message}` : '';
+        const input = document.getElementById(key);
+        if (!input) return;
+        if (message) input.setAttribute('aria-invalid', 'true');
+        else input.removeAttribute('aria-invalid');
+      };
+
+      // ---------- Calendário ----------
+      const grid = $('[data-cal-grid]', form);
+      const monthLabel = $('[data-cal-month]', form);
+      const prevMonth = $('[data-cal-prev]', form);
+      const nextMonth = $('[data-cal-next]', form);
+      const minMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+      const maxMonth = new Date(today.getFullYear(), today.getMonth() + 2, 1);
+      let viewMonth = new Date(minMonth);
+
+      const firstFreeDay = () => {
+        const end = new Date(maxMonth.getFullYear(), maxMonth.getMonth() + 1, 1);
+        for (let d = new Date(today); d < end; d.setDate(d.getDate() + 1)) {
+          if (slotsFor(d).some((s) => !s.busy)) return new Date(d);
+        }
+        return today;
+      };
+
+      const renderCalendar = () => {
+        const y = viewMonth.getFullYear();
+        const m = viewMonth.getMonth();
+        monthLabel.textContent = `${cap(MONTHS[m])} de ${y}`;
+        prevMonth.disabled = viewMonth <= minMonth;
+        nextMonth.disabled = viewMonth >= maxMonth;
+
+        const frag = document.createDocumentFragment();
+        const lead = new Date(y, m, 1).getDay();
+        for (let i = 0; i < lead; i++) frag.appendChild(document.createElement('span'));
+        let tabTarget = null;
+        const days = new Date(y, m + 1, 0).getDate();
+        for (let d = 1; d <= days; d++) {
+          const date = new Date(y, m, d);
+          const free = slotsFor(date).filter((s) => !s.busy).length;
+          const selected = !!selectedDate && date.getTime() === selectedDate.getTime();
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'cal__day';
+          btn.textContent = d;
+          btn.dataset.date = dateKey(date);
+          btn.disabled = free === 0;
+          btn.tabIndex = -1;
+          btn.classList.toggle('is-today', date.getTime() === today.getTime());
+          btn.setAttribute('aria-pressed', String(selected));
+          btn.setAttribute('aria-label', `${longDate(date)}, ${free ? `${free} ${free === 1 ? 'horário livre' : 'horários livres'}` : 'sem horários'}`);
+          if (!btn.disabled && (selected || !tabTarget)) tabTarget = btn;
+          frag.appendChild(btn);
+        }
+        grid.replaceChildren(frag);
+        if (tabTarget) tabTarget.tabIndex = 0;
+      };
+
+      // Setas do teclado percorrem os dias livres (um tabstop só no calendário)
+      grid.addEventListener('keydown', (e) => {
+        const moves = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -7, ArrowDown: 7 };
+        const btn = e.target.closest('.cal__day');
+        if (!btn || !(e.key in moves)) return;
+        e.preventDefault();
+        const days = $$('.cal__day', grid);
+        let i = days.indexOf(btn);
+        do { i += moves[e.key]; } while (i >= 0 && i < days.length && days[i].disabled);
+        if (i < 0 || i >= days.length) return;
+        days.forEach((d) => { d.tabIndex = -1; });
+        days[i].tabIndex = 0;
+        days[i].focus();
+      });
+
+      prevMonth.addEventListener('click', () => {
+        viewMonth = new Date(viewMonth.getFullYear(), viewMonth.getMonth() - 1, 1);
+        renderCalendar();
+      });
+      nextMonth.addEventListener('click', () => {
+        viewMonth = new Date(viewMonth.getFullYear(), viewMonth.getMonth() + 1, 1);
+        renderCalendar();
+      });
+
+      // ---------- Horários ----------
+      const slotsWrap = $('[data-slots]', form);
+      const slotsTitle = $('[data-slots-title]', form);
+      const slotsHint = $('[data-slots-hint]', form);
+      const slotsPanel = $('[data-slots-panel]', form);
+      const slotsEmpty = slotsWrap.innerHTML;
+      const sideBySide = window.matchMedia('(min-width: 760px)');
+
+      const renderSlots = (animate = false) => {
+        if (!selectedDate) {
+          slotsTitle.textContent = 'Horários';
+          slotsHint.textContent = '';
+          slotsWrap.innerHTML = slotsEmpty;
+          return;
+        }
+        slotsTitle.textContent = longDate(selectedDate);
+        slotsHint.textContent = service() === 'noiva' ? 'Horário de início da preparação.' : '';
+        const frag = document.createDocumentFragment();
+        slotsFor(selectedDate).forEach(({ h, busy }, i) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'slot';
+          btn.textContent = `${pad(h)}:00`;
+          btn.dataset.hour = h;
+          btn.disabled = busy;
+          btn.setAttribute('aria-pressed', String(h === selectedHour));
+          if (busy) btn.setAttribute('aria-label', `${pad(h)}:00, indisponível`);
+          if (animate && !reduceMotion) { btn.style.setProperty('--i', i); btn.classList.add('is-entering'); }
+          frag.appendChild(btn);
+        });
+        slotsWrap.replaceChildren(frag);
+      };
+
+      const selectDay = (date) => {
+        selectedDate = date;
+        selectedHour = null;
+        setError('horario', '');
+        $$('.cal__day', grid).forEach((btn) => {
+          const on = btn.dataset.date === dateKey(date);
+          btn.setAttribute('aria-pressed', String(on));
+          btn.tabIndex = on ? 0 : -1;
+        });
+        renderSlots(true);
+        // No celular os horários ficam abaixo do calendário: leva a pessoa até eles
+        if (!sideBySide.matches) slotsPanel.scrollIntoView({ block: 'nearest', behavior: reduceMotion ? 'auto' : 'smooth' });
+      };
+
+      grid.addEventListener('click', (e) => {
+        const btn = e.target.closest('.cal__day');
+        if (!btn || btn.disabled) return;
+        const [y, m, d] = btn.dataset.date.split('-').map(Number);
+        selectDay(new Date(y, m - 1, d));
+      });
+      slotsWrap.addEventListener('click', (e) => {
+        const btn = e.target.closest('.slot');
+        if (!btn || btn.disabled) return;
+        selectedHour = Number(btn.dataset.hour);
+        setError('horario', '');
+        $$('.slot', slotsWrap).forEach((s) => s.setAttribute('aria-pressed', String(s === btn)));
+      });
+
+      // Trocar serviço ou profissional muda a disponibilidade: recomeça data e horário
+      form.addEventListener('change', (e) => {
+        if (e.target.name === 'servico') setError('servico', '');
+        if (e.target.name !== 'servico' && e.target.name !== 'profissional') return;
+        selectedDate = null;
+        selectedHour = null;
+        renderCalendar();
+        renderSlots();
+      });
+
+      // ---------- Resumo ----------
+      const whenText = () => `${longDate(selectedDate)}, às ${pad(selectedHour)}:00`;
+      const fillSummary = () => {
+        $('[data-sum="servico"]', form).textContent = SERVICES[service()] || '';
+        $('[data-sum="profissional"]', form).textContent = PROS[professional()] || '';
+        $('[data-sum="quando"]', form).textContent = selectedDate && selectedHour !== null ? whenText() : '';
+      };
+
+      // ---------- Navegação entre etapas ----------
+      const showStep = (n, { focus = true } = {}) => {
+        const dir = n >= stepIndex ? 'forward' : 'back';
+        stepIndex = n;
+        if (n === 3 && !selectedDate) {
+          const first = firstFreeDay();
+          viewMonth = new Date(first.getFullYear(), first.getMonth(), 1);
+          renderCalendar();
+        }
+        if (n === 4) fillSummary();
+        steps.forEach((step) => {
+          const on = Number(step.dataset.step) === n;
+          step.hidden = !on;
+          step.classList.remove('is-entering');
+          if (on && !reduceMotion) {
+            step.dataset.dir = dir;
+            void step.offsetWidth; // reinicia a animação de entrada
+            step.classList.add('is-entering');
+          }
+        });
+        stepDots.forEach((dot) => {
+          const k = Number(dot.dataset.stepDot);
+          dot.classList.toggle('is-active', k === n);
+          dot.classList.toggle('is-done', k < n);
+          if (k === n) dot.setAttribute('aria-current', 'step');
+          else dot.removeAttribute('aria-current');
+        });
+        if (focus) $('legend', steps[n - 1]).focus({ preventScroll: true });
+        // Mantém o topo do card visível (útil no celular, onde as etapas são longas)
+        if (booking.getBoundingClientRect().top < 80) booking.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
+      };
+
+      // ---------- Validação ----------
+      const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+      const digits = (v) => v.replace(/\D/g, '');
+      const fields = $$('input[name], textarea[name]', steps[3]);
+      const checkField = (input) => {
+        const value = input.type === 'checkbox' ? input.checked : input.value.trim();
+        switch (input.name) {
+          case 'nome':
+            if (!value) return 'Informe seu nome.';
+            if (value.split(/\s+/).length < 2) return 'Informe nome e sobrenome.';
+            return '';
+          case 'whatsapp':
+            if (!value) return 'Informe seu WhatsApp com DDD.';
+            if (digits(value).length < 10) return 'Confira o número e inclua o DDD.';
+            return '';
+          case 'email':
+            if (value && !EMAIL_RE.test(value)) return 'Confira o e-mail. Exemplo: nome@email.com';
+            return '';
+          case 'consent':
+            return value ? '' : 'É preciso autorizar o contato para enviar.';
+          default:
+            return '';
+        }
+      };
+      const validateFields = () => {
+        let firstInvalid = null;
+        fields.forEach((input) => {
+          const message = checkField(input);
+          setError(input.id, message);
+          if (message && !firstInvalid) firstInvalid = input;
+        });
+        return firstInvalid;
+      };
+      const validateStep = (n) => {
+        if (n === 1) {
+          const ok = !!service();
+          setError('servico', ok ? '' : 'Escolha um serviço para continuar.');
+          if (!ok) $('input[name="servico"]', form).focus();
+          return ok;
+        }
+        if (n === 3) {
+          const ok = !!selectedDate && selectedHour !== null;
+          setError('horario', ok ? '' : selectedDate ? 'Escolha um horário para continuar.' : 'Escolha uma data e um horário para continuar.');
+          return ok;
+        }
+        if (n === 4) {
+          form.dataset.touched = 'true';
+          const invalid = validateFields();
+          if (invalid) invalid.focus();
+          return !invalid;
+        }
+        return true;
+      };
+      // Depois da primeira tentativa de envio, os erros se atualizam enquanto a pessoa corrige
+      form.addEventListener('input', (e) => {
+        if (!form.dataset.touched || !fields.includes(e.target)) return;
+        setError(e.target.id, checkField(e.target));
+      });
+
+      // Máscara de telefone: (00) 00000-0000
+      $$('[data-phone]', form).forEach((input) => {
+        input.addEventListener('input', () => {
+          const d = digits(input.value).slice(0, 11);
+          let out = d;
+          if (d.length > 2) out = `(${d.slice(0, 2)}) ${d.slice(2)}`;
+          if (d.length > 6) out = `(${d.slice(0, 2)}) ${d.slice(2, d.length - 4)}-${d.slice(-4)}`;
+          input.value = out;
+        });
+      });
+
+      form.addEventListener('click', (e) => {
+        if (e.target.closest('[data-next]') && validateStep(stepIndex)) showStep(stepIndex + 1);
+        if (e.target.closest('[data-back]')) showStep(stepIndex - 1);
+        const goto = e.target.closest('[data-goto]');
+        if (goto) showStep(Number(goto.dataset.goto));
+      });
+
+      // ---------- Envio simulado ----------
+      const submitBtn = $('[data-submit]', form);
+      const submitLabel = $('[data-submit-label]', form);
+      const submitIcon = $('[data-submit-icon]', form);
+      const resultSummary = $('[data-result-summary]', booking);
+      const resultWa = $('[data-result-wa]', booking);
+
+      const summaryRow = (label, value) => {
+        const row = document.createElement('div');
+        const dt = document.createElement('dt');
+        const dd = document.createElement('dd');
+        dt.textContent = label;
+        dd.textContent = value;
+        row.append(dt, dd);
+        return row;
+      };
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // Enter em uma etapa anterior apenas avança
+        if (stepIndex < 4) {
+          if (validateStep(stepIndex)) showStep(stepIndex + 1);
+          return;
+        }
+        if (!validateStep(4)) return;
+
+        // Simula a chamada ao servidor (na versão final: revalida o horário e registra o pedido)
+        submitBtn.disabled = true;
+        submitBtn.setAttribute('aria-busy', 'true');
+        submitLabel.textContent = 'Enviando…';
+        submitIcon.className = 'ph ph-circle-notch is-spinning';
+
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.removeAttribute('aria-busy');
+          submitLabel.textContent = 'Enviar solicitação';
+          submitIcon.className = 'ph ph-paper-plane-tilt';
+
+          const f = form.elements;
+          const name = f.nome.value.trim();
+          const notes = f.observacoes.value.trim();
+          resultSummary.replaceChildren(
+            summaryRow('Serviço', SERVICES[service()]),
+            summaryRow('Profissional', PROS[professional()]),
+            summaryRow('Data e horário', whenText()),
+            summaryRow('Nome', name),
+          );
+          const message = [
+            `Olá, equipe ${STUDIO.name}! Gostaria de solicitar um horário.`,
+            '',
+            `Serviço: ${SERVICES[service()]}`,
+            `Profissional: ${PROS[professional()]}`,
+            `Data e horário: ${whenText()}`,
+            `Nome: ${name}`,
+            notes ? `Observações: ${notes}` : null,
+          ].filter((line) => line !== null).join('\n');
+          resultWa.href = waLink(message);
+
+          form.hidden = true;
+          stepper.hidden = true;
+          result.hidden = false;
+          result.focus({ preventScroll: true });
+          if (booking.getBoundingClientRect().top < 80) booking.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
+        }, 1100);
+      });
+
+      const restart = () => {
+        form.reset();
+        delete form.dataset.touched;
+        $$('[aria-invalid]', form).forEach((el) => el.removeAttribute('aria-invalid'));
+        $$('[data-error-for]', form).forEach((el) => { el.innerHTML = ''; });
+        selectedDate = null;
+        selectedHour = null;
+        viewMonth = new Date(minMonth);
+        renderCalendar();
+        renderSlots();
+        result.hidden = true;
+        form.hidden = false;
+        stepper.hidden = false;
+      };
+      $('[data-restart]', booking).addEventListener('click', () => {
+        restart();
+        showStep(1);
+      });
+
+      // CTAs com serviço definido (Serviços, Dia da Noiva) já chegam com ele marcado
+      $$('[data-book]').forEach((link) => link.addEventListener('click', () => {
+        const radio = form.querySelector(`input[name="servico"][value="${link.dataset.book}"]`);
+        if (!radio) return;
+        if (!result.hidden) restart();
+        radio.checked = true;
+        radio.dispatchEvent(new Event('change', { bubbles: true }));
+        showStep(1, { focus: false });
+      }));
+
+      renderCalendar();
+    })();
+  </script>
+</body>
+</html>
